@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - tag - Newbie@Corner</title>
+        <link>https://glyh.github.io/tags/</link>
+        <description>Tags - tag - Newbie@Corner</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>lyhokia@gmail.com (lyhokia)</managingEditor>
+            <webMaster>lyhokia@gmail.com (lyhokia)</webMaster><lastBuildDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</lastBuildDate><atom:link href="https://glyh.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>algorithms</title>
+    <link>https://glyh.github.io/tags/algorithms/</link>
+    <pubDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</pubDate>
+    <author></author>
+    <guid>https://glyh.github.io/tags/algorithms/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>LISP</title>
+    <link>https://glyh.github.io/tags/lisp/</link>
+    <pubDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</pubDate>
+    <author></author>
+    <guid>https://glyh.github.io/tags/lisp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>principles</title>
+    <link>https://glyh.github.io/tags/principles/</link>
+    <pubDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</pubDate>
+    <author></author>
+    <guid>https://glyh.github.io/tags/principles/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
