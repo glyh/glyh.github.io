@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "mermaid.min.css",
-	"sourceRoot": "/home/anonymous/CS/projects/web/newbie@corner",
+	"sourceRoot": "/home/lyh/CS/projects/web/newbie@corner",
 	"sources": [
 		"themes/CodeIT/assets/lib/mermaid/mermaid.scss",
 		"themes/CodeIT/assets/lib/mermaid/themes/neutral/index.scss",

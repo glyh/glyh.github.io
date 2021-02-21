@@ -7,9 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>SICP Solutions in Clojure (Chapter 2) - Newbie@Corner</title><meta name="description" content=""><meta property="og:title" content="SICP Solutions in Clojure (Chapter 2)" />
 <meta property="og:description" content="Exercise 2.1
-(defn make-rat [n d] 
-  (let [g (gcd n d) nf (/ n g) df (/ d g)] 
-    (if (&lt; df 0) (list (- nf) (- df)) 
+(defn make-rat [n d]
+  (let [g (gcd n d) nf (/ n g) df (/ d g)]
+    (if (&lt; df 0) (list (- nf) (- df))
                       (list nf df) )))
 Exercise 2.2
 (defn make-point [x y] (list x y))
@@ -20,8 +20,8 @@ Exercise 2.2
 (def start-segment first)
 (def end-segment second)
 
-(defn midpoint-segment [seg] 
-  (map #(/ (&#43; (% (start-segment seg)) (% (end-segment seg))) 2) 
+(defn midpoint-segment [seg]
+  (map #(/ (&#43; (% (start-segment seg)) (% (end-segment seg))) 2)
        [x-point y-point]))
 
 (defn print-point [p] (prn (str &#34;(&#34; (x-point p) &#34;, &#34; (y-point p) &#34;)&#34;)))
@@ -33,9 +33,9 @@ Exercise 2.2
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SICP Solutions in Clojure (Chapter 2)"/>
 <meta name="twitter:description" content="Exercise 2.1
-(defn make-rat [n d] 
-  (let [g (gcd n d) nf (/ n g) df (/ d g)] 
-    (if (&lt; df 0) (list (- nf) (- df)) 
+(defn make-rat [n d]
+  (let [g (gcd n d) nf (/ n g) df (/ d g)]
+    (if (&lt; df 0) (list (- nf) (- df))
                       (list nf df) )))
 Exercise 2.2
 (defn make-point [x y] (list x y))
@@ -46,8 +46,8 @@ Exercise 2.2
 (def start-segment first)
 (def end-segment second)
 
-(defn midpoint-segment [seg] 
-  (map #(/ (&#43; (% (start-segment seg)) (% (end-segment seg))) 2) 
+(defn midpoint-segment [seg]
+  (map #(/ (&#43; (% (start-segment seg)) (% (end-segment seg))) 2)
        [x-point y-point]))
 
 (defn print-point [p] (prn (str &#34;(&#34; (x-point p) &#34;, &#34; (y-point p) &#34;)&#34;)))
@@ -64,7 +64,7 @@ Exercise 2.2
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-2\/"
-        },"genre": "posts","keywords": "algorithms, principles, LISP","wordcount":  5700 ,
+        },"genre": "posts","keywords": "algorithms, principles, LISP","wordcount":  5705 ,
         "url": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-2\/","datePublished": "2021-02-03T16:39:00+08:00","dateModified": "2021-02-03T16:39:00+08:00","publisher": {
             "@type": "Organization",
             "name": "lyhokia"},"author": {
@@ -202,7 +202,7 @@ Exercise 2.2
         <li><a href="#exercise-275">Exercise 2.75</a></li>
         <li><a href="#exercise-276">Exercise 2.76</a></li>
         <li><a href="#exercise-277">Exercise 2.77</a></li>
-        <li><a href="#exercise-278281-283--285">Exercise 2.78~2.81, 2.83 ~ 2.85</a></li>
+        <li><a href="#exercise-278--281-283--285-287--295">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.95</a></li>
         <li><a href="#exercise-281">Exercise 2.81</a></li>
         <li><a href="#exercise-282">Exercise 2.82</a></li>
         <li><a href="#exercise-286">Exercise 2.86</a></li>
@@ -211,9 +211,9 @@ Exercise 2.2
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="exercise-21">Exercise 2.1</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-rat</span> <span class="p">[</span><span class="nv">n</span> <span class="nv">d</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">g</span> <span class="p">(</span><span class="nf">gcd</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span> <span class="nv">nf</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">n</span> <span class="nv">g</span><span class="p">)</span> <span class="nv">df</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">d</span> <span class="nv">g</span><span class="p">)]</span> 
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">df</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">- </span><span class="nv">nf</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">df</span><span class="p">))</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-rat</span> <span class="p">[</span><span class="nv">n</span> <span class="nv">d</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">g</span> <span class="p">(</span><span class="nf">gcd</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span> <span class="nv">nf</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">n</span> <span class="nv">g</span><span class="p">)</span> <span class="nv">df</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">d</span> <span class="nv">g</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">df</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">- </span><span class="nv">nf</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">df</span><span class="p">))</span>
                       <span class="p">(</span><span class="nb">list </span><span class="nv">nf</span> <span class="nv">df</span><span class="p">)</span> <span class="p">)))</span>
 </code></pre></div><h3 id="exercise-22">Exercise 2.2</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-point</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">list </span><span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
@@ -224,15 +224,15 @@ Exercise 2.2
 <span class="p">(</span><span class="k">def </span><span class="nv">start-segment</span> <span class="nv">first</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">end-segment</span> <span class="nv">second</span><span class="p">)</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">midpoint-segment</span> <span class="p">[</span><span class="nv">seg</span><span class="p">]</span> 
-  <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">%</span> <span class="p">(</span><span class="nf">start-segment</span> <span class="nv">seg</span><span class="p">))</span> <span class="p">(</span><span class="nf">%</span> <span class="p">(</span><span class="nf">end-segment</span> <span class="nv">seg</span><span class="p">)))</span> <span class="mi">2</span><span class="p">)</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">midpoint-segment</span> <span class="p">[</span><span class="nv">seg</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">%</span> <span class="p">(</span><span class="nf">start-segment</span> <span class="nv">seg</span><span class="p">))</span> <span class="p">(</span><span class="nf">%</span> <span class="p">(</span><span class="nf">end-segment</span> <span class="nv">seg</span><span class="p">)))</span> <span class="mi">2</span><span class="p">)</span>
        <span class="p">[</span><span class="nv">x-point</span> <span class="nv">y-point</span><span class="p">]))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">print-point</span> <span class="p">[</span><span class="nv">p</span><span class="p">]</span> <span class="p">(</span><span class="nb">prn </span><span class="p">(</span><span class="nb">str </span><span class="s">&#34;(&#34;</span> <span class="p">(</span><span class="nf">x-point</span> <span class="nv">p</span><span class="p">)</span> <span class="s">&#34;, &#34;</span> <span class="p">(</span><span class="nf">y-point</span> <span class="nv">p</span><span class="p">)</span> <span class="s">&#34;)&#34;</span><span class="p">)))</span>
 </code></pre></div><h3 id="exercise-23">Exercise 2.3</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">
 <span class="c1">; Implementation 1</span>
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-rectangle</span> <span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">]</span> <span class="p">(</span><span class="nb">list </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">))</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-rectangle</span> <span class="p">[</span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">]</span> <span class="p">(</span><span class="nb">list </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">))</span>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">abs</span> <span class="o">#</span><span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">%</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">%</span><span class="p">)</span> <span class="nv">%</span><span class="p">))</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">diff</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="p">(</span><span class="nf">abs</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">f</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">b</span><span class="p">))))</span>
@@ -258,15 +258,15 @@ Exercise 2.2
 <span class="p">(</span><span class="nf">car</span> <span class="o">#</span><span class="p">(</span><span class="nf">%</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span><span class="c1">; =&gt;</span>
 <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nf">%</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">p</span> <span class="nv">q</span><span class="p">]</span> <span class="nv">p</span><span class="p">))</span><span class="c1">; =&gt;</span>
 <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">p</span> <span class="nv">q</span><span class="p">]</span> <span class="nv">p</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span><span class="c1">; =&gt;</span>
-<span class="nv">x</span> 
+<span class="nv">x</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">cdr</span> <span class="p">[</span><span class="nv">z</span><span class="p">]</span> <span class="p">(</span><span class="nf">z</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">p</span> <span class="nv">q</span><span class="p">]</span> <span class="nv">q</span><span class="p">)))</span>
 </code></pre></div><h3 id="exercise-25">Exercise 2.5</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nb">cons </span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">int </span><span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">Math/pow</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">Math/pow</span> <span class="mi">3</span> <span class="nv">y</span><span class="p">))))</span>
-<span class="p">(</span><span class="kd">defn </span><span class="nv">cdr</span> <span class="p">[</span><span class="nv">z</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">cdr</span> <span class="p">[</span><span class="nv">z</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">z</span> <span class="nv">result</span><span class="p">]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">rem </span><span class="nv">z</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">z</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">result</span> <span class="mi">1</span><span class="p">))</span><span class="nv">result</span> <span class="p">))</span>
   <span class="p">(</span><span class="nf">iter</span> <span class="nv">z</span> <span class="mi">0</span><span class="p">))</span>
-<span class="p">(</span><span class="kd">defn </span><span class="nv">car</span> <span class="p">[</span><span class="nv">z</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">car</span> <span class="p">[</span><span class="nv">z</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">z</span> <span class="nv">result</span><span class="p">]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">rem </span><span class="nv">z</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">z</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">result</span> <span class="mi">1</span><span class="p">))</span><span class="nv">result</span> <span class="p">))</span>
   <span class="p">(</span><span class="nf">iter</span> <span class="nv">z</span> <span class="mi">0</span><span class="p">))</span>
 </code></pre></div><h3 id="exercise-26">Exercise 2.6</h3>
@@ -274,7 +274,7 @@ Exercise 2.2
 <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="p">((</span><span class="nf">zero</span> <span class="nv">f</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))</span><span class="c1">; =&gt;</span>
 <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))</span><span class="c1">; =&gt;</span>
 <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">)))</span><span class="c1">; =&gt;</span>
-<span class="p">(</span><span class="k">def </span><span class="nv">one</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">fn</span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">))))</span><span class="c1">; </span>
+<span class="p">(</span><span class="k">def </span><span class="nv">one</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">fn</span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">))))</span><span class="c1">;</span>
 
 <span class="p">(</span><span class="nf">add-1</span> <span class="nv">one</span><span class="p">)</span><span class="c1">; =&gt;</span>
 <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">f</span> <span class="p">((</span><span class="nf">one</span> <span class="nv">f</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))</span><span class="c1">; =&gt;</span>
@@ -318,8 +318,8 @@ $$</p>
    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">))</span> <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Throwable.</span> <span class="s">&#34;Divded by a interval that spans 0&#34;</span><span class="p">)))</span>
    <span class="p">(</span><span class="nf">mul-interval</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">make-interval</span> <span class="p">(</span><span class="nb">/ </span><span class="mf">1.0</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">))</span> <span class="p">(</span><span class="nb">/ </span><span class="mf">1.0</span> <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-211">Exercise 2.11</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">mul-interval</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> 
-  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">mul-interval</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
           <span class="p">(</span><span class="nf">make-interval</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">))</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">)))</span>
         <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">)))</span>
           <span class="p">(</span><span class="nf">make-interval</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">))</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">)))</span>
@@ -339,13 +339,13 @@ $$</p>
   <span class="p">(</span><span class="nf">make-interval</span> <span class="p">(</span><span class="nb">- </span><span class="nv">c</span> <span class="nv">w</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">c</span> <span class="nv">w</span><span class="p">)))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">center</span> <span class="p">[</span><span class="nv">i</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">i</span><span class="p">)</span> 
-        <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">i</span><span class="p">))</span> 
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">i</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">i</span><span class="p">))</span>
      <span class="mi">2</span><span class="p">))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">width</span> <span class="p">[</span><span class="nv">i</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">i</span><span class="p">)</span> 
-        <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">i</span><span class="p">))</span> 
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">i</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">i</span><span class="p">))</span>
      <span class="mi">2</span><span class="p">))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">make-center-percent</span> <span class="p">[</span><span class="nv">c</span> <span class="nv">p</span><span class="p">]</span> <span class="p">(</span><span class="nf">make-center-width</span> <span class="nv">c</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="nv">p</span><span class="p">)))</span>
@@ -379,11 +379,11 @@ $$</p>
 <p>I don&rsquo;t think &ldquo;to design an interval-arithmetic package that does not have this shortcoming&rdquo; is possible.</p>
 <p>As long as you use one name mutiple times to refers to some variant, the problem in 2.14 will happen.</p>
 <h3 id="exercise-217">Exercise 2.17</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">last-pair</span> <span class="p">[</span><span class="nv">L</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">last-pair</span> <span class="p">[</span><span class="nv">L</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">nil? </span><span class="p">(</span><span class="nb">second </span><span class="nv">L</span><span class="p">))</span> <span class="nv">L</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">L</span><span class="p">))))</span>
 </code></pre></div><h3 id="exercise-218">Exercise 2.18</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nb">reverse </span><span class="p">[</span><span class="nv">L</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">L</span><span class="p">)</span> <span class="nv">L</span> <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nb">rest </span><span class="nv">L</span><span class="p">))</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="nv">L</span><span class="p">)))))</span>  
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nb">reverse </span><span class="p">[</span><span class="nv">L</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">L</span><span class="p">)</span> <span class="nv">L</span> <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nb">rest </span><span class="nv">L</span><span class="p">))</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="nv">L</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-219">Exercise 2.19</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">no-more?</span> <span class="nv">empty?</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">first-denomination</span> <span class="nv">first</span><span class="p">)</span>
@@ -417,8 +417,8 @@ $$</p>
 <p>The function <code>cons</code> kept pushing elemnets to the front of the array.</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">square</span> <span class="o">#</span><span class="p">(</span><span class="nb">* </span><span class="nv">%</span> <span class="nv">%</span><span class="p">))</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">square-list</span> <span class="p">[</span><span class="nv">items</span><span class="p">]</span>
-  <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">things</span> <span class="nv">answer</span><span class="p">]</span> 
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">things</span><span class="p">)</span> <span class="nv">answer</span> 
+  <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">things</span> <span class="nv">answer</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">things</span><span class="p">)</span> <span class="nv">answer</span>
       <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">things</span><span class="p">)</span> <span class="p">(</span><span class="nb">concat </span><span class="nv">answer</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="nb">first </span><span class="nv">things</span><span class="p">)))))))</span>
   <span class="p">(</span><span class="nf">iter</span> <span class="nv">items</span> <span class="o">&#39;</span><span class="p">()))</span>
 </code></pre></div><p>This works for me&hellip; Maybe it&rsquo;s only because the call to iter in Scheme gives <code>nil</code> as the first element in the list.</p>
@@ -427,7 +427,7 @@ $$</p>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">for-each</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">col</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="nv">f</span> <span class="nv">col</span><span class="p">))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">for-each</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">col</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">for-each</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">col</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">col</span><span class="p">))</span> <span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">first </span><span class="nv">col</span><span class="p">))</span> <span class="p">(</span><span class="nf">recur</span> <span class="nv">f</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">col</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-224">Exercise 2.24</h3>
 <p>Result by the interpreter : (1 (2 (3 4)))</p>
@@ -441,14 +441,14 @@ $$</p>
 <span class="p">(</span><span class="nb">concat </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
 <span class="p">(</span><span class="nb">list </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
 </code></pre></div><h3 id="exercise-227">Exercise 2.27</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">deep-reverse</span> <span class="p">[</span><span class="nv">L</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">L</span><span class="p">)</span> <span class="nv">L</span> <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="nf">deep-reverse</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">L</span><span class="p">))</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">L</span><span class="p">)]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">deep-reverse</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">a</span><span class="p">))))))</span>  
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">deep-reverse</span> <span class="p">[</span><span class="nv">L</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">L</span><span class="p">)</span> <span class="nv">L</span> <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="nf">deep-reverse</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">L</span><span class="p">))</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">L</span><span class="p">)]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">deep-reverse</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">a</span><span class="p">))))))</span>
 </code></pre></div><h3 id="exercise-228">Exercise 2.28</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fringe</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">n</span><span class="p">)</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">fringe</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">n</span><span class="p">)</span>
     <span class="nv">n</span>
-    <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">n</span><span class="p">)]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">fringe</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">a</span><span class="p">))</span> <span class="p">)</span> 
-            <span class="p">(</span><span class="nf">fringe</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">n</span><span class="p">)))))</span> 
+    <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">n</span><span class="p">)]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">fringe</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">a</span><span class="p">))</span> <span class="p">)</span>
+            <span class="p">(</span><span class="nf">fringe</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">n</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-229">Exercise 2.29</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">left-branch</span> <span class="nv">first</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">right-branch</span> <span class="nv">second</span><span class="p">)</span>
@@ -460,16 +460,16 @@ $$</p>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">m</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">total-weight</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">m</span><span class="p">)))</span> <span class="p">(</span><span class="nf">total-weight</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">m</span><span class="p">))))</span> <span class="nv">m</span><span class="p">))</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">balanced?</span>
   <span class="p">([</span><span class="nv">m</span><span class="p">]</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="p">(</span><span class="nf">balanced?</span> <span class="nv">m</span> <span class="nv">true</span><span class="p">)))</span>
-  <span class="p">([</span><span class="nv">m</span> <span class="nv">success</span><span class="p">]</span> 
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">m</span><span class="p">)</span> 
-      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">bl</span> <span class="p">(</span><span class="nf">balanced</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">m</span><span class="p">)))</span> <span class="nv">br</span> <span class="p">(</span><span class="nf">balanced</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">m</span><span class="p">)))]</span> 
-        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">and </span><span class="nv">success</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">bl</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">br</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">* </span><span class="nv">bl</span> <span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">m</span><span class="p">)))</span> <span class="p">(</span><span class="nb">* </span><span class="nv">br</span> <span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">m</span><span class="p">)))))</span> 
+  <span class="p">([</span><span class="nv">m</span> <span class="nv">success</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">m</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">bl</span> <span class="p">(</span><span class="nf">balanced</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">m</span><span class="p">)))</span> <span class="nv">br</span> <span class="p">(</span><span class="nf">balanced</span> <span class="p">(</span><span class="nf">structure</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">m</span><span class="p">)))]</span>
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">and </span><span class="nv">success</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">bl</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">br</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">* </span><span class="nv">bl</span> <span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">m</span><span class="p">)))</span> <span class="p">(</span><span class="nb">* </span><span class="nv">br</span> <span class="p">(</span><span class="nf">length</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">m</span><span class="p">)))))</span>
           <span class="p">(</span><span class="nb">+ </span><span class="nv">bl</span> <span class="nv">br</span><span class="p">)</span> <span class="mi">-1</span><span class="p">))</span>
-      <span class="nv">m</span><span class="p">)))</span> 
+      <span class="nv">m</span><span class="p">)))</span>
 </code></pre></div><p>Only 4 functions, <code>left-branch</code>, <code>right-branch</code>, <code>length</code> and <code>structure</code>.</p>
 <p>(Actually in the Clojure implementation there&rsquo;s nothing to change.</p>
 <h3 id="exercise-230">Exercise 2.30</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">square-tree</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">square-tree</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">square-tree</span> <span class="p">(</span><span class="nb">first </span><span class="nv">n</span><span class="p">))</span> <span class="p">(</span><span class="nf">square-tree</span> <span class="p">(</span><span class="nb">second </span><span class="nv">n</span><span class="p">)))</span> <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="nv">n</span><span class="p">)))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">square-tree</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
@@ -482,7 +482,7 @@ $$</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">subsets</span> <span class="p">[</span><span class="nv">s</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">s</span><span class="p">)</span>
     <span class="o">&#39;</span><span class="p">(())</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">s</span><span class="o">&#39;</span> <span class="p">(</span><span class="nf">subsets</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">s</span><span class="p">))</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">s</span><span class="p">)]</span> 
+    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">s</span><span class="o">&#39;</span> <span class="p">(</span><span class="nf">subsets</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">s</span><span class="p">))</span> <span class="nv">a</span> <span class="p">(</span><span class="nb">first </span><span class="nv">s</span><span class="p">)]</span>
       <span class="p">(</span><span class="nb">concat </span><span class="nv">s</span><span class="o">&#39;</span> <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">%</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">s</span><span class="o">&#39;</span><span class="p">)))))</span>
 </code></pre></div><p>The application keeps reduce the size of a problem until it can be solve in constant time,</p>
 <p>then merge the solutions of sub problems until we have the solution of the original problem.</p>
@@ -493,7 +493,7 @@ $$</p>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">length</span> <span class="p">[</span><span class="nv">sequence</span><span class="p">]</span> <span class="p">(</span><span class="nb">reduce </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">inc </span><span class="nv">x</span><span class="p">))</span> <span class="mi">0</span> <span class="nv">sequence</span><span class="p">))</span>
 </code></pre></div><h3 id="exercise-234">Exercise 2.34</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">horner-eval</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">Cs</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">horner-eval</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">Cs</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">reduce </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">cur</span> <span class="nv">C_i</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">cur</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">C_i</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">reverse </span><span class="nv">Cs</span><span class="p">)))</span>
 <span class="p">(</span><span class="nf">horner-eval</span> <span class="mi">2</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">))</span>
 </code></pre></div><h3 id="exercise-235">Exercise 2.35</h3>
@@ -503,13 +503,13 @@ $$</p>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">seqs</span><span class="p">))</span> <span class="p">()</span>
     <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nf">accumulate-n</span> <span class="nv">op</span> <span class="nv">init</span> <span class="p">(</span><span class="nb">map rest </span><span class="nv">seqs</span><span class="p">))</span> <span class="p">(</span><span class="nb">reduce </span><span class="nv">op</span> <span class="nv">init</span> <span class="p">(</span><span class="nb">map first </span><span class="nv">seqs</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-237">Exercise 2.37</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">dot-product</span> <span class="p">[</span><span class="nv">v</span> <span class="nv">w</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">dot-product</span> <span class="p">[</span><span class="nv">v</span> <span class="nv">w</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">reduce + </span><span class="mi">0</span> <span class="p">(</span><span class="nb">map * </span><span class="nv">v</span> <span class="nv">w</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">matrix-*-vector</span> <span class="p">[</span><span class="nv">m</span> <span class="nv">v</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">matrix-*-vector</span> <span class="p">[</span><span class="nv">m</span> <span class="nv">v</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">dot-product</span> <span class="nv">%</span> <span class="nv">v</span><span class="p">)</span> <span class="nv">m</span><span class="p">))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">transpose</span> <span class="p">[</span><span class="nv">m</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">transpose</span> <span class="p">[</span><span class="nv">m</span><span class="p">]</span>
   <span class="p">(</span><span class="nf">accumulate-n</span> <span class="nb">conj </span><span class="p">[]</span> <span class="nv">m</span><span class="p">))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">matrix*matrix</span> <span class="p">[</span><span class="nv">m</span> <span class="nv">n</span><span class="p">]</span>
@@ -524,7 +524,7 @@ $$</p>
 </code></pre></div><p>The result of <code>fold-left</code> and <code>fold-right</code> are the same if and only if the associative law works for the function f.</p>
 <h3 id="exercise-239">Exercise 2.39</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">fold-left</span> <span class="nv">reduce</span><span class="p">)</span>
-<span class="p">(</span><span class="kd">defn </span><span class="nv">fold-right</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">init</span> <span class="nv">seq</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">fold-right</span> <span class="p">[</span><span class="nv">f</span> <span class="nv">init</span> <span class="nv">seq</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">seq</span><span class="p">)</span> <span class="nv">init</span> <span class="p">(</span><span class="nf">f</span> <span class="p">(</span><span class="nb">first </span><span class="nv">seq</span><span class="p">)</span> <span class="p">(</span><span class="nf">fold-right</span> <span class="nv">f</span> <span class="nv">init</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">seq</span><span class="p">)))))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nb">reverse </span><span class="p">[</span><span class="nv">seq</span><span class="p">]</span> <span class="p">(</span><span class="nf">fold-right</span> <span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">%2</span> <span class="nv">%1</span><span class="p">)</span> <span class="p">[]</span> <span class="nv">seq</span><span class="p">))</span>
@@ -542,7 +542,7 @@ $$</p>
   <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">unique-pairs</span> <span class="nv">n</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">second </span><span class="nv">%</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">first </span><span class="nv">%</span><span class="p">)]</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
        <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="p">(</span><span class="nb">second </span><span class="nv">%</span><span class="p">)</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">first </span><span class="nv">%</span><span class="p">)]</span> <span class="p">(</span><span class="nb">list </span><span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))))</span>
-<span class="p">(</span><span class="kd">defn </span><span class="nv">triples-le</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">triples-le</span> <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span> <span class="p">()</span> <span class="p">(</span><span class="nb">concat </span><span class="p">(</span><span class="nf">triples-le</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nf">triples-e</span> <span class="nv">n</span><span class="p">))))</span>
 </code></pre></div><h3 id="exercise-242">Exercise 2.42</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">empty-board</span> <span class="p">())</span>
@@ -552,19 +552,19 @@ $$</p>
     <span class="p">(</span><span class="nb">every? </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">i</span><span class="p">]</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">row-i</span> <span class="p">(</span><span class="nb">nth </span><span class="nv">positions</span> <span class="p">(</span><span class="nb">- </span><span class="nv">i</span> <span class="mi">1</span><span class="p">))</span> <span class="nv">diagonal-i-1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">i</span> <span class="nv">row-i</span><span class="p">)</span> <span class="nv">diagonal-i-2</span> <span class="p">(</span><span class="nb">- </span><span class="nv">i</span> <span class="nv">row-i</span><span class="p">)]</span>
       <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">not= </span><span class="nv">row-i</span> <span class="nv">row-k</span><span class="p">)</span> <span class="p">(</span><span class="nb">not= </span><span class="nv">diagonal-i-1</span> <span class="nv">diagonal-k-1</span><span class="p">)</span> <span class="p">(</span><span class="nb">not= </span><span class="nv">diagonal-i-2</span> <span class="nv">diagonal-k-2</span><span class="p">))))</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="nv">k</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-position</span> <span class="p">[</span><span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-position</span> <span class="p">[</span><span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">concat </span><span class="nv">rest-of-queens</span> <span class="p">(</span><span class="nb">list </span><span class="nv">new-row</span><span class="p">)))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">queens</span> <span class="p">[</span><span class="nv">board-size</span><span class="p">]</span>
-  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span> 
+  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">empty-board</span><span class="p">)</span>
                 <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">queen-cols</span> <span class="p">(</span><span class="nb">- </span><span class="nv">k</span> <span class="mi">1</span><span class="p">))</span>
                      <span class="p">(</span><span class="nb">mapcat </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">rest-of-queens</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">new-row</span><span class="p">]</span> <span class="p">(</span><span class="nf">adjoin-position</span> <span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">))</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">board-size</span> <span class="mi">1</span><span class="p">)))))</span>
                      <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="nb">partial </span><span class="nv">safe?</span> <span class="nv">k</span><span class="p">)))))</span>
   <span class="p">(</span><span class="nf">queen-cols</span> <span class="nv">board-size</span><span class="p">))</span>
 </code></pre></div><p>Another version (the search algorithm), works in the positive order.</p>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">    
-<span class="p">(</span><span class="kd">defn </span><span class="nv">queens-optimized</span> <span class="p">[</span><span class="nv">board-size</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure">
+<span class="p">(</span><span class="kd">defn </span><span class="nv">queens-optimized</span> <span class="p">[</span><span class="nv">board-size</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">safe?</span> <span class="p">[</span><span class="nv">used-diagonal-1</span> <span class="nv">used-diagonal-2</span> <span class="nv">cur</span><span class="p">]</span>
     <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">new-row</span> <span class="p">(</span><span class="nb">last </span><span class="nv">cur</span><span class="p">)</span> <span class="nv">new-col</span> <span class="p">(</span><span class="nb">count </span><span class="nv">cur</span><span class="p">)]</span>
       <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nf">used-diagonal-1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">new-row</span> <span class="nv">new-col</span> <span class="mi">-2</span><span class="p">))</span> <span class="p">(</span><span class="nf">used-diagonal-2</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">new-row</span> <span class="p">(</span><span class="nb">- </span><span class="nv">new-col</span><span class="p">)</span> <span class="nv">board-size</span> <span class="mi">-1</span><span class="p">))))))</span>
@@ -579,7 +579,7 @@ $$</p>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">permutation</span> <span class="p">[</span><span class="nv">used-diagonal-1</span> <span class="nv">used-diagonal-2</span> <span class="nv">unused</span> <span class="nv">cur</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">unused</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">cur</span><span class="p">)</span>
                         <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">unused</span>
-                             <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">cur</span> <span class="nv">%</span><span class="p">))</span> 
+                             <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">cur</span> <span class="nv">%</span><span class="p">))</span>
                              <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="nb">partial </span><span class="nv">safe?</span> <span class="nv">used-diagonal-1</span> <span class="nv">used-diagonal-2</span><span class="p">))</span>
                              <span class="p">(</span><span class="nb">mapcat </span><span class="o">#</span><span class="p">(</span><span class="nb">apply </span><span class="nv">permutation</span> <span class="p">(</span><span class="nf">generate-state</span> <span class="nv">used-diagonal-1</span> <span class="nv">used-diagonal-2</span> <span class="nv">unused</span> <span class="nv">%</span><span class="p">)))</span>
                         <span class="p">)))</span>
@@ -613,11 +613,11 @@ $$</p>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">safe?</span> <span class="p">[</span><span class="nv">k</span> <span class="nv">positions</span><span class="p">]</span>
       <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">not= </span><span class="nv">row-i</span> <span class="nv">row-k</span><span class="p">)</span> <span class="p">(</span><span class="nb">not= </span><span class="nv">diagonal-i-1</span> <span class="nv">diagonal-k-1</span><span class="p">)</span> <span class="p">(</span><span class="nb">not= </span><span class="nv">diagonal-i-2</span> <span class="nv">diagonal-k-2</span><span class="p">))))</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="nv">k</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-position</span> <span class="p">[</span><span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-position</span> <span class="p">[</span><span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">concat </span><span class="nv">rest-of-queens</span> <span class="p">(</span><span class="nb">list </span><span class="nv">new-row</span><span class="p">)))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">queens</span> <span class="p">[</span><span class="nv">board-size</span><span class="p">]</span>
-  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span> 
+  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">empty-board</span><span class="p">)</span>
                 <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nf">queen-cols</span> <span class="p">(</span><span class="nb">- </span><span class="nv">k</span> <span class="mi">1</span><span class="p">))</span>
                      <span class="p">(</span><span class="nb">mapcat </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">rest-of-queens</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">new-row</span><span class="p">]</span> <span class="p">(</span><span class="nf">adjoin-position</span> <span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">))</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">board-size</span> <span class="mi">1</span><span class="p">)))))</span>
@@ -625,7 +625,7 @@ $$</p>
   <span class="p">(</span><span class="nf">queen-cols</span> <span class="nv">board-size</span><span class="p">))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">bad-queens</span> <span class="p">[</span><span class="nv">board-size</span><span class="p">]</span>
-  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span> 
+  <span class="p">(</span><span class="kd">defn </span><span class="nv">queen-cols</span> <span class="p">[</span><span class="nv">k</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">empty-board</span><span class="p">)</span>
                 <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">range </span><span class="mi">1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">board-size</span> <span class="mi">1</span><span class="p">))</span>
                      <span class="p">(</span><span class="nb">mapcat </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">new-row</span><span class="p">]</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">rest-of-queens</span><span class="p">]</span> <span class="p">(</span><span class="nf">adjoin-position</span> <span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">))</span> <span class="p">(</span><span class="nf">queen-cols</span> <span class="p">(</span><span class="nb">- </span><span class="nv">k</span> <span class="mi">1</span><span class="p">)))))</span>
@@ -635,16 +635,16 @@ $$</p>
 <span class="p">(</span><span class="nb">time </span><span class="p">(</span><span class="nf">queens</span> <span class="mi">8</span><span class="p">))</span><span class="c1">; &#34;Elapsed time: 18.970709 msecs&#34;</span>
 <span class="p">(</span><span class="nb">time </span><span class="p">(</span><span class="nf">bad-queens</span> <span class="mi">8</span><span class="p">))</span><span class="c1">; &#34;Elapsed time: 2977.498625 msecs&#34;</span>
 </code></pre></div><h3 id="exercise-244">Exercise 2.44</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">up-split</span> <span class="p">[</span><span class="nv">painter</span> <span class="nv">n</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">painter</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">up-split</span> <span class="p">[</span><span class="nv">painter</span> <span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">painter</span>
     <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">smaller</span> <span class="p">(</span><span class="nf">up-split</span> <span class="nv">painter</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))]</span>
       <span class="p">(</span><span class="nf">below</span> <span class="nv">painter</span> <span class="p">(</span><span class="nf">beside</span> <span class="nv">smaller</span> <span class="nv">smaller</span><span class="p">)))))</span>
 </code></pre></div><h3 id="exercise-245">Exercise 2.45</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">split</span> <span class="p">[</span><span class="nv">painter</span> <span class="nv">n</span> <span class="nv">op1</span> <span class="nv">op2</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">painter</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">split</span> <span class="p">[</span><span class="nv">painter</span> <span class="nv">n</span> <span class="nv">op1</span> <span class="nv">op2</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">painter</span>
     <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">smaller</span> <span class="p">(</span><span class="nf">split</span> <span class="nv">painter</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">op1</span> <span class="nv">op2</span><span class="p">)]</span>
       <span class="p">(</span><span class="nf">op1</span> <span class="nv">painter</span> <span class="p">(</span><span class="nf">op2</span> <span class="nv">smaller</span> <span class="nv">smaller</span><span class="p">)))))</span>
-      
+
 <span class="p">(</span><span class="k">def </span><span class="nv">right-split</span> <span class="nv">beside</span> <span class="nv">below</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">up-split</span> <span class="nv">below</span> <span class="nv">beside</span><span class="p">)</span>
 </code></pre></div><h3 id="exercise-246">Exercise 2.46</h3>
@@ -668,13 +668,13 @@ $$</p>
 <span class="p">(</span><span class="k">def </span><span class="nv">start-segment</span> <span class="nv">first</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">end-segment</span> <span class="nv">second</span><span class="p">)</span>
 </code></pre></div><h3 id="exercise-249">Exercise 2.49</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">frame-coord-map</span> <span class="p">[</span><span class="nv">frame</span><span class="p">]</span> 
-  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">v</span><span class="p">]</span> <span class="p">(</span><span class="nf">add-vect</span> <span class="p">(</span><span class="nf">origin-frame</span> <span class="nv">frame</span><span class="p">)</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">frame-coord-map</span> <span class="p">[</span><span class="nv">frame</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">v</span><span class="p">]</span> <span class="p">(</span><span class="nf">add-vect</span> <span class="p">(</span><span class="nf">origin-frame</span> <span class="nv">frame</span><span class="p">)</span>
           <span class="p">(</span><span class="nf">add-vect</span> <span class="p">(</span><span class="nf">scale-vect</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="nf">edge1-frame</span> <span class="nv">frame</span><span class="p">))</span>
                     <span class="p">(</span><span class="nf">scale-vect</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="nf">edge2-frame</span> <span class="nv">frame</span><span class="p">))))))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">segments-&gt;painter</span> <span class="p">[</span><span class="nv">segments</span><span class="p">]</span>
-  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">frame</span><span class="p">]</span> 
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">frame</span><span class="p">]</span>
     <span class="p">(</span><span class="nb">doseq </span><span class="p">[</span><span class="nv">segment</span> <span class="nv">segments</span><span class="p">]</span>
       <span class="p">(</span><span class="nf">draw-line</span> <span class="p">((</span><span class="nf">frame-coord-map</span> <span class="nv">frame</span><span class="p">)</span> <span class="p">(</span><span class="nf">start-segment</span> <span class="nv">segment</span><span class="p">))</span> <span class="p">((</span><span class="nf">frame-coord-map</span> <span class="nv">frame</span><span class="p">)</span> <span class="p">(</span><span class="nf">end-segment</span> <span class="nv">segment</span><span class="p">))))))</span>
 
@@ -707,7 +707,7 @@ $$</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">rotate90</span> <span class="p">[</span><span class="nv">painter</span><span class="p">]</span>
   <span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">beside</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">beside</span>
   <span class="p">([</span><span class="nv">painter</span><span class="p">]</span> <span class="p">(</span><span class="nf">beside</span> <span class="nv">painter</span> <span class="nv">painter</span><span class="p">))</span>
   <span class="p">([</span><span class="nv">painter1</span> <span class="nv">painter2</span><span class="p">]</span>
   <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">split-point</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">1</span><span class="nv">/2</span> <span class="mi">0</span><span class="p">)</span>
@@ -715,7 +715,7 @@ $$</p>
         <span class="nv">paint-right</span> <span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter2</span> <span class="nv">split-point</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">1</span><span class="nv">/2</span> <span class="mi">1</span><span class="p">))]</span>
     <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">frame</span><span class="p">]</span> <span class="p">(</span><span class="nf">paint-left</span> <span class="nv">frame</span><span class="p">)</span> <span class="p">(</span><span class="nf">paint-right</span> <span class="nv">frame</span><span class="p">)))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">below</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">below</span>
   <span class="p">([</span><span class="nv">painter</span><span class="p">]</span> <span class="p">(</span><span class="nf">below</span> <span class="nv">painter</span> <span class="nv">painter</span><span class="p">))</span>
   <span class="p">([</span><span class="nv">painter1</span> <span class="nv">painter2</span><span class="p">]</span>
   <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">split-point</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mi">0</span> <span class="mi">1</span><span class="nv">/2</span><span class="p">)</span>
@@ -737,7 +737,7 @@ $$</p>
 <span class="p">(</span><span class="nf">memq</span> <span class="ss">&#39;red</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">red</span> <span class="nv">shoes</span> <span class="nv">blue</span> <span class="nv">socks</span><span class="p">))</span><span class="c1">; =&gt; true</span>
 </code></pre></div><h3 id="exercise-254">Exercise 2.54</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">equal-list</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span>
-  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">list?</span> <span class="nv">b</span><span class="p">))</span> 
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">list?</span> <span class="nv">b</span><span class="p">))</span>
           <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">b</span><span class="p">))</span> <span class="nv">true</span>
                 <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">b</span><span class="p">)))</span> <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">equal-list</span> <span class="p">(</span><span class="nb">first </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="nv">b</span><span class="p">))</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">b</span><span class="p">)))</span>
                 <span class="ss">:else</span> <span class="nv">false</span><span class="p">)</span>
@@ -751,13 +751,13 @@ $$</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">variable?</span> <span class="nv">symbol?</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">same-variable?</span> <span class="nv">=</span><span class="p">)</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span> 
-  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a1</span>
         <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">number?</span> <span class="nv">a1</span><span class="p">)</span> <span class="p">(</span><span class="nf">number?</span> <span class="nv">a2</span><span class="p">))</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nb">list </span><span class="ss">&#39;+</span> <span class="nv">a1</span> <span class="nv">a2</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-product</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-product</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">0</span><span class="p">))</span> <span class="mi">0</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">a2</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">a1</span>
@@ -780,7 +780,7 @@ $$</p>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">product?</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">first </span><span class="nv">x</span><span class="p">)</span> <span class="ss">&#39;*</span><span class="p">)))</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">exponentiation?</span> <span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">first </span><span class="nv">x</span><span class="p">)</span> <span class="ss">&#39;**</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">deriv</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">deriv</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">number?</span> <span class="nv">exp</span><span class="p">)</span> <span class="mi">0</span>
         <span class="p">(</span><span class="nf">variable?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">exp</span> <span class="nv">var</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">sum?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">addend</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">)</span> <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">augend</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">))</span>
@@ -791,7 +791,7 @@ $$</p>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">variable?</span> <span class="nv">symbol?</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">same-variable?</span> <span class="nv">=</span><span class="p">)</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">insert-into-sum</span> <span class="p">[</span><span class="nv">col</span> <span class="nv">i</span><span class="p">]</span>
     <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">number?</span> <span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">col</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">first </span><span class="nv">col</span><span class="p">)</span> <span class="nv">i</span><span class="p">))</span>
           <span class="ss">:else</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">col</span> <span class="nv">i</span><span class="p">)))</span>
@@ -826,11 +826,11 @@ $$</p>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">deriv-nth-product</span> <span class="p">[</span><span class="nv">col</span> <span class="k">var </span><span class="nv">id</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">apply </span><span class="nv">make-product</span> <span class="p">(</span><span class="nf">map-indexed</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">id</span><span class="o">&#39;</span> <span class="nv">item</span><span class="p">]</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">id</span><span class="o">&#39;</span> <span class="nv">id</span><span class="p">)</span> <span class="p">(</span><span class="nf">deriv</span> <span class="nv">item</span> <span class="nv">var</span><span class="p">)</span> <span class="nv">item</span><span class="p">))</span> <span class="nv">col</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">deriv</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">deriv</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">number?</span> <span class="nv">exp</span><span class="p">)</span> <span class="mi">0</span>
         <span class="p">(</span><span class="nf">variable?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">exp</span> <span class="nv">var</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">sum?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">apply </span><span class="nv">make-sum</span> <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nf">deriv</span> <span class="nv">%</span> <span class="nv">var</span><span class="p">)</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">exp</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nf">product?</span> <span class="nv">exp</span><span class="p">)</span> 
+        <span class="p">(</span><span class="nf">product?</span> <span class="nv">exp</span><span class="p">)</span>
           <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">n</span> <span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">count </span><span class="nv">exp</span><span class="p">)</span> <span class="mi">1</span><span class="p">)]</span>
             <span class="p">(</span><span class="nb">apply </span><span class="nv">make-sum</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="nb">partial </span><span class="nv">deriv-nth-product</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">)</span> <span class="p">(</span><span class="nb">range </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">count </span><span class="nv">exp</span><span class="p">)</span> <span class="mi">1</span><span class="p">)))))</span>
         <span class="p">(</span><span class="nf">exponentiation?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-product</span> <span class="p">(</span><span class="nf">make-product</span> <span class="p">(</span><span class="nf">exponent</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-exponentiation</span> <span class="p">(</span><span class="nf">base</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">exponent</span> <span class="nv">exp</span><span class="p">)</span> <span class="mi">-1</span><span class="p">)))</span> <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">base</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">))</span>
@@ -859,7 +859,7 @@ $$</p>
     <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">sorted-ops</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">exp</span>
          <span class="p">(</span><span class="nf">map-indexed</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">idx</span> <span class="nv">itm</span><span class="p">]</span> <span class="p">(</span><span class="nb">list </span><span class="nv">idx</span> <span class="p">(</span><span class="nb">get </span><span class="nv">operators-precedence</span> <span class="nv">itm</span><span class="p">))))</span>
          <span class="p">(</span><span class="nb">filter </span><span class="o">#</span><span class="p">(</span><span class="nb">not= </span><span class="p">(</span><span class="nb">second </span><span class="nv">%</span><span class="p">)</span> <span class="nv">nil</span><span class="p">))</span>
-         <span class="p">(</span><span class="nb">sort-by </span><span class="nv">second</span><span class="p">))</span> <span class="nb">split-at </span><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">sorted-ops</span><span class="p">))]</span> 
+         <span class="p">(</span><span class="nb">sort-by </span><span class="nv">second</span><span class="p">))</span> <span class="nb">split-at </span><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">sorted-ops</span><span class="p">))]</span>
       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">nil? </span><span class="nv">split-at</span><span class="p">)</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">first </span><span class="nv">exp</span><span class="p">))</span><span class="c1">; the expression is a constant in some brackets</span>
         <span class="p">(</span><span class="nb">vector </span><span class="p">(</span><span class="nb">nth </span><span class="nv">exp</span> <span class="nv">split-at</span><span class="p">)</span> <span class="p">(</span><span class="nf">add-parentheses-to-prefix</span> <span class="p">(</span><span class="nb">take split-at </span><span class="nv">exp</span><span class="p">))</span> <span class="p">(</span><span class="nf">add-parentheses-to-prefix</span> <span class="p">(</span><span class="nb">drop </span><span class="p">(</span><span class="nb">+ split-at </span><span class="mi">1</span><span class="p">)</span> <span class="nv">exp</span><span class="p">)))))))</span>
 </code></pre></div><h3 id="exercise-259">Exercise 2.59</h3>
@@ -867,11 +867,11 @@ $$</p>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nb">first </span><span class="nv">set</span><span class="p">))</span> <span class="nv">true</span>
       <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">set</span><span class="p">))</span> <span class="p">(</span><span class="nf">recur</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">set</span><span class="p">)))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-set</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-set</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">element-of-set?</span> <span class="nv">x</span> <span class="nv">set</span><span class="p">)</span> <span class="nb">set </span><span class="p">(</span><span class="nb">conj set </span><span class="nv">x</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">union-set</span> <span class="p">[</span><span class="nv">s1</span> <span class="nv">s2</span><span class="p">]</span> 
-  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">union-set</span> <span class="p">[</span><span class="nv">s1</span> <span class="nv">s2</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span>
         <span class="p">(</span><span class="nf">empty?</span> <span class="nv">s2</span><span class="p">)</span> <span class="nv">s1</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nf">adjoin-set</span> <span class="p">(</span><span class="nb">first </span><span class="nv">s1</span><span class="p">)</span> <span class="p">(</span><span class="nf">union-set</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">))))</span>
 </code></pre></div><h3 id="exercise-260">Exercise 2.60</h3>
@@ -883,7 +883,7 @@ $$</p>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">union-set</span> <span class="nv">concat</span><span class="p">)</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">intersection-set</span> <span class="p">[</span><span class="nv">s1</span> <span class="nv">s2</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">intersection-set</span> <span class="p">[</span><span class="nv">s1</span> <span class="nv">s2</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">s1</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">s2</span><span class="p">))</span> <span class="p">()</span>
         <span class="p">(</span><span class="nf">element-of-set?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">)</span> <span class="p">(</span><span class="nf">adjoin-set</span> <span class="p">(</span><span class="nf">intersection-set</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="nv">s1</span><span class="p">))</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">)))</span>
@@ -907,13 +907,13 @@ $$</p>
 $$</p>
 <p>Actually, I won&rsquo;t use the duplicate implementation in application&hellip; Why not just use <code>list</code> or <code>vector</code>?</p>
 <h3 id="exercise-261">Exercise 2.61</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">element-of-set?</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">element-of-set?</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">set</span><span class="p">)</span> <span class="nv">false</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nb">first </span><span class="nv">set</span><span class="p">))</span> <span class="nv">true</span>
         <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="p">(</span><span class="nb">first </span><span class="nv">set</span><span class="p">))</span> <span class="nv">false</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nf">recur</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">set</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-set</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">adjoin-set</span> <span class="p">[</span><span class="nv">x</span> <span class="nv">set</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">set</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">x</span><span class="p">)</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nb">first </span><span class="nv">set</span><span class="p">))</span> <span class="nv">set</span>
         <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="p">(</span><span class="nb">first </span><span class="nv">set</span><span class="p">))</span> <span class="p">(</span><span class="nb">conj set </span><span class="nv">x</span><span class="p">)</span>
@@ -933,15 +933,15 @@ $$</p>
 <p><code>append</code> costs $O(n)$ in Scheme, while <code>cons</code> costs $O(1)$ in Scheme.</p>
 <p>As a result, <code>tree-&gt;list-1</code> is $O(n^2)$, while <code>tree-&gt;list-2</code> is $O(n)$.</p>
 <h3 id="exercise-264">Exercise 2.64</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">list-&gt;tree</span> <span class="p">[</span><span class="nv">elements</span><span class="p">]</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">list-&gt;tree</span> <span class="p">[</span><span class="nv">elements</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">partial-tree</span> <span class="p">[</span><span class="nv">elts</span> <span class="nv">n</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">nil</span> <span class="nv">elts</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">left-size</span> <span class="p">(</span><span class="nb">quot </span><span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> 
-            <span class="nv">right-size</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="nv">left-size</span> <span class="mi">1</span><span class="p">)</span> 
-            <span class="p">[</span><span class="nv">left-tree</span> <span class="nv">non-left-elts</span><span class="p">]</span> <span class="p">(</span><span class="nf">partial-tree</span> <span class="nv">elts</span> <span class="nv">left-size</span><span class="p">)</span> 
+      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">left-size</span> <span class="p">(</span><span class="nb">quot </span><span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="nv">right-size</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="nv">left-size</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">[</span><span class="nv">left-tree</span> <span class="nv">non-left-elts</span><span class="p">]</span> <span class="p">(</span><span class="nf">partial-tree</span> <span class="nv">elts</span> <span class="nv">left-size</span><span class="p">)</span>
             <span class="p">[</span><span class="nv">cur</span> <span class="o">&amp;</span> <span class="nv">right-elts</span><span class="p">]</span> <span class="nv">non-left-elts</span>
             <span class="p">[</span><span class="nv">right-tree</span> <span class="nv">left-elts</span><span class="p">]</span> <span class="p">(</span><span class="nf">partial-tree</span> <span class="nv">right-elts</span> <span class="nv">right-size</span><span class="p">)]</span>
-        <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="nv">cur</span> <span class="nv">left-tree</span> <span class="nv">right-tree</span><span class="p">)</span> 
+        <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="nv">cur</span> <span class="nv">left-tree</span> <span class="nv">right-tree</span><span class="p">)</span>
           <span class="nv">left-elts</span><span class="p">))))</span>
   <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nf">partial-tree</span> <span class="nv">elements</span> <span class="p">(</span><span class="nb">count </span><span class="nv">elements</span><span class="p">))))</span>
 
@@ -993,11 +993,11 @@ $$</p>
         <span class="p">(</span><span class="nb">= </span><span class="nv">bit</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">R</span> <span class="nv">branch</span><span class="p">)</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;bad bit: CHOOSE-BRANCH `&#34;</span> <span class="nv">bit</span> <span class="s">&#34;`&#34;</span><span class="p">)))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">decode</span> <span class="p">[</span><span class="nv">bits</span> <span class="nv">tree</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">decode</span> <span class="p">[</span><span class="nv">bits</span> <span class="nv">tree</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">decode-1</span> <span class="p">[</span><span class="nv">bits</span> <span class="nv">cur</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="nv">bits</span><span class="p">)</span> <span class="p">()</span>
       <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nb">next </span><span class="p">(</span><span class="nf">choose-branch</span> <span class="p">(</span><span class="nb">first </span><span class="nv">bits</span><span class="p">)</span> <span class="nv">cur</span><span class="p">)]</span>
-        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">leaf?</span> <span class="nv">next</span><span class="p">)</span> 
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">leaf?</span> <span class="nv">next</span><span class="p">)</span>
           <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nf">decode-1</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">bits</span><span class="p">)</span> <span class="nv">tree</span><span class="p">)</span> <span class="p">(</span><span class="nf">symbol-leaf</span> <span class="nv">next</span><span class="p">))</span>
           <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">bits</span><span class="p">)</span> <span class="nv">next</span><span class="p">)))))</span>
   <span class="p">(</span><span class="nf">decode-1</span> <span class="nv">bits</span> <span class="nv">tree</span><span class="p">))</span>
@@ -1006,7 +1006,7 @@ $$</p>
 <span class="c1">; It&#39;s better to used the sort function implemented by Clojure, with a time complexity of O(nlogn)</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">make-leaf-set</span> <span class="p">[</span><span class="nv">pairs</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">pairs</span> 
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">pairs</span>
        <span class="p">(</span><span class="nb">sort-by </span><span class="nv">weight</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">%</span> <span class="ss">&#39;leaf</span><span class="p">))))</span>
 
@@ -1016,7 +1016,7 @@ $$</p>
 </code></pre></div><h3 id="exercise-268">Exercise 2.68</h3>
 <div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">encode-symbol</span> <span class="p">(</span><span class="nf">memoize</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">tree</span> <span class="nv">sym</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">travel</span> <span class="p">[</span><span class="nv">rt</span> <span class="nv">cur</span><span class="p">]</span>
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">leaf?</span> <span class="nv">rt</span><span class="p">)</span> 
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">leaf?</span> <span class="nv">rt</span><span class="p">)</span>
         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">symbol-leaf</span> <span class="nv">rt</span><span class="p">)</span> <span class="nv">sym</span><span class="p">)</span> <span class="nv">cur</span> <span class="nv">false</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nf">travel</span> <span class="p">(</span><span class="nf">L</span> <span class="nv">rt</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">cur</span> <span class="mi">0</span><span class="p">))</span>
            <span class="p">(</span><span class="nf">travel</span> <span class="p">(</span><span class="nf">R</span> <span class="nv">rt</span><span class="p">)</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">cur</span> <span class="mi">1</span><span class="p">)))))</span>
@@ -1074,7 +1074,7 @@ $$</p>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">successive-merge</span> <span class="p">[</span><span class="nv">cnt</span> <span class="nv">pairs</span><span class="p">]</span>
   <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">pairs</span> <span class="nv">n</span><span class="p">]</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">multimap/first</span> <span class="nv">pairs</span><span class="p">))</span>
-      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">new-node</span> <span class="p">(</span><span class="nf">code-tree</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">multimap/first</span> <span class="nv">pairs</span><span class="p">))</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">multimap/second</span> <span class="nv">pairs</span><span class="p">)))</span> 
+      <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">new-node</span> <span class="p">(</span><span class="nf">code-tree</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">multimap/first</span> <span class="nv">pairs</span><span class="p">))</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">multimap/second</span> <span class="nv">pairs</span><span class="p">)))</span>
             <span class="nv">rest-pairs</span> <span class="p">(</span><span class="nf">multimap/rest</span> <span class="p">(</span><span class="nf">multimap/rest</span> <span class="nv">pairs</span><span class="p">))]</span>
         <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nf">multimap/add</span> <span class="nv">rest-pairs</span> <span class="p">(</span><span class="nf">weight</span> <span class="nv">new-node</span><span class="p">)</span> <span class="nv">new-node</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span>
   <span class="p">(</span><span class="nf">iter</span> <span class="nv">pairs</span> <span class="p">(</span><span class="nb">- </span><span class="nv">cnt</span> <span class="mi">1</span><span class="p">)))</span>
@@ -1119,13 +1119,13 @@ $$</p>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">deriv</span><span class="p">)</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span> 
-  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-sum</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a1</span>
         <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">number?</span> <span class="nv">a1</span><span class="p">)</span> <span class="p">(</span><span class="nf">number?</span> <span class="nv">a2</span><span class="p">))</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span>
         <span class="ss">:else</span> <span class="p">(</span><span class="nb">list </span><span class="ss">&#39;+</span> <span class="nv">a1</span> <span class="nv">a2</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">make-product</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-product</span> <span class="p">[</span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">]</span>
   <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">0</span><span class="p">))</span> <span class="mi">0</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a1</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">a2</span>
         <span class="p">(</span><span class="nb">= </span><span class="nv">a2</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">a1</span>
@@ -1149,26 +1149,26 @@ $$</p>
   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">count </span><span class="nv">exp</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">concat </span><span class="o">&#39;</span><span class="p">(</span><span class="nf">*</span><span class="p">)</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">exp</span><span class="p">))))</span>
 
 <span class="p">(</span><span class="kd">defn </span><span class="nv">deriv-*</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">make-product</span> 
+  <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">make-product</span>
               <span class="p">(</span><span class="nf">multiplier</span> <span class="nv">exp</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">multiplicand</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">))</span>
-            <span class="p">(</span><span class="nf">make-product</span> 
+            <span class="p">(</span><span class="nf">make-product</span>
               <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">multiplier</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">)</span>
               <span class="p">(</span><span class="nf">multiplicand</span> <span class="nv">exp</span><span class="p">))))</span>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">base</span> <span class="nv">first</span><span class="p">)</span>
 <span class="p">(</span><span class="k">def </span><span class="nv">exponent</span> <span class="nv">second</span><span class="p">)</span>
 <span class="p">(</span><span class="kd">defn </span><span class="nv">deriv-**</span> <span class="p">[</span><span class="nv">exp</span> <span class="nv">var</span><span class="p">]</span>
-  <span class="p">(</span><span class="nf">make-product</span> <span class="p">(</span><span class="nf">make-product</span> 
+  <span class="p">(</span><span class="nf">make-product</span> <span class="p">(</span><span class="nf">make-product</span>
                   <span class="p">(</span><span class="nf">exponent</span> <span class="nv">exp</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">make-exponentiation</span>
-                    <span class="p">(</span><span class="nf">base</span> <span class="nv">exp</span><span class="p">)</span> 
-                    <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">exponent</span> <span class="nv">exp</span><span class="p">)</span> <span class="mi">-1</span><span class="p">)))</span> 
+                    <span class="p">(</span><span class="nf">base</span> <span class="nv">exp</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">make-sum</span> <span class="p">(</span><span class="nf">exponent</span> <span class="nv">exp</span><span class="p">)</span> <span class="mi">-1</span><span class="p">)))</span>
                 <span class="p">(</span><span class="nf">deriv</span> <span class="p">(</span><span class="nf">base</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">var</span><span class="p">)))</span>
 
 
 <span class="p">(</span><span class="k">def </span><span class="nv">ops-map</span> <span class="p">{</span>
-  <span class="p">[</span><span class="ss">&#39;deriv</span> <span class="ss">&#39;+</span><span class="p">]</span> <span class="nv">deriv-+</span>, 
+  <span class="p">[</span><span class="ss">&#39;deriv</span> <span class="ss">&#39;+</span><span class="p">]</span> <span class="nv">deriv-+</span>,
   <span class="p">[</span><span class="ss">&#39;deriv</span> <span class="ss">&#39;*</span><span class="p">]</span> <span class="nv">deriv-*</span>,
   <span class="p">[</span><span class="ss">&#39;deriv</span> <span class="ss">&#39;**</span><span class="p">]</span> <span class="nv">deriv-**</span>
 <span class="p">})</span>
@@ -1184,24 +1184,24 @@ $$</p>
 <p>In the example on the book, you should only change the implementation of <code>get</code>, <code>put</code>, and calls to them.</p>
 <p>In my code you can just change the map <code>ops-map</code> and the calls to the function <code>get</code>.</p>
 <h3 id="exercise-274">Exercise 2.74</h3>
-<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">get-record</span> 
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">get-record</span>
   <span class="s">&#34;the employee&#39;s id and the file should be supplied. &#34;</span>
   <span class="p">([</span><span class="nv">id</span> <span class="nv">file</span><span class="p">]</span> <span class="c1">; O(n)</span>
-    <span class="p">(</span><span class="nb">first </span>
+    <span class="p">(</span><span class="nf">first</span>
       <span class="p">(</span><span class="nb">for </span><span class="p">[</span><span class="nv">record</span> <span class="nv">file</span>
             <span class="ss">:let</span> <span class="p">[</span><span class="nv">cur-id</span> <span class="p">(</span><span class="ss">:id</span> <span class="nv">record</span><span class="p">)]</span>
             <span class="ss">:when</span> <span class="p">(</span><span class="nb">= </span><span class="nv">cur-id</span> <span class="nv">id</span><span class="p">)]</span> <span class="nv">record</span><span class="p">))))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">find-employee-record</span> 
-  <span class="s">&#34;The set of all files should be supplied. 
-</span><span class="s">   It should be structured like this: 
-</span><span class="s">   &#39;(({:id Tom :salary 10} {:id Jerry :salary 100}) 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">find-employee-record</span>
+  <span class="s">&#34;The set of all files should be supplied.
+</span><span class="s">   It should be structured like this:
+</span><span class="s">   &#39;(({:id Tom :salary 10} {:id Jerry :salary 100})
 </span><span class="s">     ({:id Alpha :salary 10} {:id Bravo :salary 100}))
 </span><span class="s">   That is, a list of list of maps. &#34;</span>
   <span class="p">([</span><span class="nv">id</span> <span class="nv">files</span><span class="p">]</span> <span class="c1">; O(n)</span>
     <span class="p">(</span><span class="nb">some </span><span class="o">#</span><span class="p">(</span><span class="nf">get-record</span> <span class="nv">id</span> <span class="nv">%</span><span class="p">)</span> <span class="nv">files</span><span class="p">)))</span>
 
-<span class="p">(</span><span class="kd">defn </span><span class="nv">get-salary</span> <span class="p">[</span><span class="nv">id</span> <span class="nv">files</span><span class="p">]</span> 
+<span class="p">(</span><span class="kd">defn </span><span class="nv">get-salary</span> <span class="p">[</span><span class="nv">id</span> <span class="nv">files</span><span class="p">]</span>
   <span class="p">(</span><span class="ss">:salary</span> <span class="p">(</span><span class="nf">find-employee-record</span> <span class="nv">id</span> <span class="nv">files</span><span class="p">)))</span>
 </code></pre></div><p>Only change the function <code>get-record</code>.</p>
 <h3 id="exercise-275">Exercise 2.75</h3>
@@ -1227,7 +1227,7 @@ $$</p>
 <p>For the second question, my implementation differs from the one on the book (I&rsquo;m using clojure).</p>
 <p>In my implementation, I straightly call the functions in the module <code>complex</code>, so no <code>apply-generic</code> is called.</p>
 <p>The <code>magnitude</code> function calls  <code>complex/magnitude</code>, and then <code>base/val</code>.</p>
-<h3 id="exercise-278281-283--285">Exercise 2.78~2.81, 2.83 ~ 2.85</h3>
+<h3 id="exercise-278--281-283--285-287--295">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.95</h3>
 <p>See: <a href="https://github.com/glyh/sicp-solutions-clojure/tree/main/src/sicp_solutions_clojure/chapter_2/algebraic_system" target="_blank" rel="noopener noreferrer">sicp-solutions on my github.</a></p>
 <h3 id="exercise-281">Exercise 2.81</h3>
 <p>Stack overflows, since the function keeps calling itself.</p>

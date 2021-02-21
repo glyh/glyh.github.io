@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "/home/anonymous/CS/projects/web/newbie@corner",
+	"sourceRoot": "/home/lyh/CS/projects/web/newbie@corner",
 	"sources": [
 		"themes/CodeIT/assets/css/style.scss",
 		"themes/CodeIT/assets/css/_variables.scss",
