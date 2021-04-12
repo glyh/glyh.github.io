@@ -27,9 +27,10 @@ Exercise 2.2
 (defn print-point [p] (prn (str &#34;(&#34; (x-point p) &#34;, &#34; (y-point p) &#34;)&#34;)))
 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-2/" />
-<meta property="article:published_time" content="2021-02-03T16:39:00+08:00" />
-<meta property="article:modified_time" content="2021-02-03T16:39:00+08:00" />
+<meta property="og:url" content="https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-03T16:39:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-02-03T16:39:00&#43;08:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SICP Solutions in Clojure (Chapter 2)"/>
 <meta name="twitter:description" content="Exercise 2.1
@@ -202,7 +203,7 @@ Exercise 2.2
         <li><a href="#exercise-275">Exercise 2.75</a></li>
         <li><a href="#exercise-276">Exercise 2.76</a></li>
         <li><a href="#exercise-277">Exercise 2.77</a></li>
-        <li><a href="#exercise-278--281-283--285-287--295">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.95</a></li>
+        <li><a href="#exercise-278--281-283--285-287--297">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.97</a></li>
         <li><a href="#exercise-281">Exercise 2.81</a></li>
         <li><a href="#exercise-282">Exercise 2.82</a></li>
         <li><a href="#exercise-286">Exercise 2.86</a></li>
@@ -1227,7 +1228,7 @@ $$</p>
 <p>For the second question, my implementation differs from the one on the book (I&rsquo;m using clojure).</p>
 <p>In my implementation, I straightly call the functions in the module <code>complex</code>, so no <code>apply-generic</code> is called.</p>
 <p>The <code>magnitude</code> function calls  <code>complex/magnitude</code>, and then <code>base/val</code>.</p>
-<h3 id="exercise-278--281-283--285-287--295">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.95</h3>
+<h3 id="exercise-278--281-283--285-287--297">Exercise 2.78 ~ 2.81, 2.83 ~ 2.85, 2.87 ~ 2.97</h3>
 <p>See: <a href="https://github.com/glyh/sicp-solutions-clojure/tree/main/src/sicp_solutions_clojure/chapter_2/algebraic_system" target="_blank" rel="noopener noreferrer">sicp-solutions on my github.</a></p>
 <h3 id="exercise-281">Exercise 2.81</h3>
 <p>Stack overflows, since the function keeps calling itself.</p>
