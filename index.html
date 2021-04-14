@@ -66,6 +66,11 @@
 <main class="main">
                 <div class="container"><div class="page home" posts><div class="home-profile"></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/sicp-solutions-in-clojure-chapter-3/">SICP Solutions in Clojure Chapter 3</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>lyhokia</a></span>&nbsp;<span class="post-publish"></span>&nbsp;<span class="post-category"></span></div><div class="content">Exercise 3.1 (defn make-accumulator [initial] (let [sum (atom initial)] (fn [x] (swap! sum (partial + x))))) Exercise 3.2 (defn make-monitored [f] (let [counter (atom 0)] (fn [x] (condp = x &#39;how-many-calls? @counter &#39;reset-count (swap! counter (constantly 0)) (do (f x) (swap! counter inc)))))) Exercise 3.3 (defn make-account [initial-balance password] (let [balance (atom initial-balance)] (fn [pass operate] (cond (not= pass password) (constantly &#34;Incorrect password&#34;) (= operate &#39;withdraw) (fn [x] (if (&gt;= @balance x) (swap!</div><div class="post-footer">
+        <a href="/posts/sicp-solutions-in-clojure-chapter-3/"></a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/algorithms/">algorithms</a>,&nbsp;<a href="/tags/principles/">principles</a>,&nbsp;<a href="/tags/lisp/">LISP</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/sicp-solutions-in-clojure-chapter-1/">SICP Solutions in Clojure (Chapter 1)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>lyhokia</a></span>&nbsp;<span class="post-publish"></span>&nbsp;<span class="post-category"></span></div><div class="content"><p>I&rsquo;m learning Clojure and SICP these days, and trying to finish the exercises on
 the SICP.</p></div><div class="post-footer">

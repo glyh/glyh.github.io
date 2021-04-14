@@ -4,7 +4,14 @@
         <link>https://glyh.github.io/categories/science/</link>
         <description>science - category - Newbie@Corner</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>lyhokia@gmail.com (lyhokia)</managingEditor>
-            <webMaster>lyhokia@gmail.com (lyhokia)</webMaster><lastBuildDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</lastBuildDate><atom:link href="https://glyh.github.io/categories/science/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lyhokia@gmail.com (lyhokia)</webMaster><lastBuildDate>Mon, 12 Apr 2021 18:16:52 &#43;0800</lastBuildDate><atom:link href="https://glyh.github.io/categories/science/" rel="self" type="application/rss+xml" /><item>
+    <title>SICP Solutions in Clojure Chapter 3</title>
+    <link>https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-3/</link>
+    <pubDate>Mon, 12 Apr 2021 18:16:52 &#43;0800</pubDate>
+    <author></author>
+    <guid>https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-3/</guid>
+    <description><![CDATA[Exercise 3.1 (defn make-accumulator [initial] (let [sum (atom initial)] (fn [x] (swap! sum (partial + x))))) Exercise 3.2 (defn make-monitored [f] (let [counter (atom 0)] (fn [x] (condp = x &#39;how-many-calls? @counter &#39;reset-count (swap! counter (constantly 0)) (do (f x) (swap! counter inc)))))) Exercise 3.3 (defn make-account [initial-balance password] (let [balance (atom initial-balance)] (fn [pass operate] (cond (not= pass password) (constantly &#34;Incorrect password&#34;) (= operate &#39;withdraw) (fn [x] (if (&gt;= @balance x) (swap!]]></description>
+</item><item>
     <title>SICP Solutions in Clojure (Chapter 1)</title>
     <link>https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-1/</link>
     <pubDate>Wed, 03 Feb 2021 16:39:00 &#43;0800</pubDate>
