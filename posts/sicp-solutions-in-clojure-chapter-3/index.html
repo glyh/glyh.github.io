@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-3\/"
-        },"genre": "posts","keywords": "algorithms, principles, LISP","wordcount":  1406 ,
+        },"genre": "posts","keywords": "algorithms, principles, LISP","wordcount":  1619 ,
         "url": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-3\/","datePublished": "2021-04-12T18:16:52+08:00","dateModified": "2021-04-12T18:16:52+08:00","publisher": {
             "@type": "Organization",
             "name": "lyhokia"},"author": {
@@ -111,6 +111,10 @@
         <li><a href="#exercise-321">Exercise 3.21</a></li>
         <li><a href="#exercise-322">Exercise 3.22</a></li>
         <li><a href="#exercise-323">Exercise 3.23</a></li>
+        <li><a href="#exercise-324">Exercise 3.24</a></li>
+        <li><a href="#exercise-325">Exercise 3.25</a></li>
+        <li><a href="#exercise-326">Exercise 3.26</a></li>
+        <li><a href="#exercise-327">Exercise 3.27</a></li>
       </ul>
     </li>
   </ul>
@@ -433,7 +437,49 @@ Obviously, if there&rsquo;s no loop. the algorithm while terminate without two P
       <span class="p">(</span><span class="nf">do</span>
         <span class="p">(</span><span class="nf">swap-front-ptr!</span> <span class="nv">q</span> <span class="ss">:next</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">swap-front-ptr!</span> <span class="nv">q</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%</span> <span class="ss">:last</span> <span class="nv">nil</span><span class="p">))))))</span>
-</code></pre></div></div><div class="post-footer" id="post-footer">
+</code></pre></div><h3 id="exercise-324">Exercise 3.24</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-table</span> <span class="p">[</span><span class="nv">same-key?</span><span class="p">]</span> <span class="c1">;; This is implemented as a n-dimension array</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">local-table</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">nil</span><span class="p">)]</span>
+    <span class="p">(</span><span class="kd">defn </span><span class="nv">lookup</span> <span class="p">[</span><span class="nb">keys </span><span class="nv">table</span><span class="p">]</span>
+      <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">nil? </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">table</span><span class="p">))</span>
+              <span class="nv">false</span>
+            <span class="p">(</span><span class="nf">same-key?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">)))</span>
+              <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">))</span>
+                <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))</span>
+                <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))))</span>
+            <span class="ss">:else</span>
+              <span class="p">(</span><span class="nf">recur</span> <span class="nb">key </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">))))</span>
+    <span class="p">(</span><span class="kd">defn </span><span class="nv">insert</span> <span class="p">[</span><span class="nb">keys </span><span class="nv">table</span> <span class="nv">value</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">(</span><span class="nf">empty?</span> <span class="nv">keys</span><span class="p">)</span>
+          <span class="nv">value</span>
+        <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">nil? </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">table</span><span class="p">))</span>
+          <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="nv">nil</span> <span class="nv">value</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">same-key?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))(</span><span class="nf">insert</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))</span> <span class="nv">value</span><span class="p">)))</span>
+        <span class="ss">:else</span>
+          <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nf">insert</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">)</span> <span class="nv">value</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))))</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">m</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">condp</span> <span class="nb">= </span><span class="nv">m</span>
+       <span class="ss">&#39;lookup-proc</span>
+         <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">keys</span><span class="p">]</span>
+           <span class="p">(</span><span class="nf">lookup</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">keys</span><span class="p">)</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">list </span><span class="nv">keys</span><span class="p">))</span> <span class="o">@</span><span class="nv">local-table</span><span class="p">))</span>
+       <span class="ss">&#39;insert-proc!</span>
+         <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nb">keys </span><span class="nv">value</span><span class="p">]</span>
+           <span class="p">(</span><span class="nf">swap!</span> <span class="nv">local-table</span> <span class="p">(</span><span class="nf">constantly</span>
+             <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">keys</span><span class="p">)</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">list </span><span class="nv">keys</span><span class="p">))</span> <span class="o">@</span><span class="nv">local-table</span> <span class="nv">value</span><span class="p">))))</span>
+       <span class="ss">:else</span>
+         <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;MAKE-TABLE: procedure not found for &#34;</span> <span class="nv">m</span><span class="p">)))))))</span>
+</code></pre></div><h3 id="exercise-325">Exercise 3.25</h3>
+<p>Implemented in 3.24</p>
+<h3 id="exercise-326">Exercise 3.26</h3>
+<p>A binary tree resides in another.</p>
+<h3 id="exercise-327">Exercise 3.27</h3>
+<p>Environment diagram omitted.</p>
+<p>The algorithm now turns to O(n+m), where n is the scale of input to the function and m is the time you query.</p>
+<p>This is because for every x, f(x) will only be calculated once.</p>
+<p>Scheme/Clojure won&rsquo;t work the same, if the recursion part won&rsquo;t call the memoized function.</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
