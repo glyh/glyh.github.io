@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>SICP Solutions in Clojure Chapter 3 - Newbie@Corner</title><meta name="description" content=""><meta property="og:title" content="SICP Solutions in Clojure Chapter 3" />
+<meta property="og:description" content="Exercise 3.1 (defn make-accumulator [initial] (let [sum (atom initial)] (fn [x] (swap! sum (partial &#43; x))))) Exercise 3.2 (defn make-monitored [f] (let [counter (atom 0)] (fn [x] (condp = x &#39;how-many-calls? @counter &#39;reset-count (swap! counter (constantly 0)) (do (f x) (swap! counter inc)))))) Exercise 3.3 (defn make-account [initial-balance password] (let [balance (atom initial-balance)] (fn [pass operate] (cond (not= pass password) (constantly &#34;Incorrect password&#34;) (= operate &#39;withdraw) (fn [x] (if (&gt;= @balance x) (swap!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-12T18:16:52&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-12T18:16:52&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SICP Solutions in Clojure Chapter 3"/>
+<meta name="twitter:description" content="Exercise 3.1 (defn make-accumulator [initial] (let [sum (atom initial)] (fn [x] (swap! sum (partial &#43; x))))) Exercise 3.2 (defn make-monitored [f] (let [counter (atom 0)] (fn [x] (condp = x &#39;how-many-calls? @counter &#39;reset-count (swap! counter (constantly 0)) (do (f x) (swap! counter inc)))))) Exercise 3.3 (defn make-account [initial-balance password] (let [balance (atom initial-balance)] (fn [pass operate] (cond (not= pass password) (constantly &#34;Incorrect password&#34;) (= operate &#39;withdraw) (fn [x] (if (&gt;= @balance x) (swap!"/>
+<meta name="application-name" content="Newbie@Corner">
+<meta name="apple-mobile-web-app-title" content="Newbie@Corner"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-3/" /><link rel="prev" href="https://glyh.github.io/posts/sicp-solutions-in-clojure-chapter-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SICP Solutions in Clojure Chapter 3",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-3\/"
+        },"genre": "posts","keywords": "algorithms, principles, LISP","wordcount":  1619 ,
+        "url": "https:\/\/glyh.github.io\/posts\/sicp-solutions-in-clojure-chapter-3\/","datePublished": "2021-04-12T18:16:52+08:00","dateModified": "2021-04-12T18:16:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": "lyhokia"},"author": {
+                "@type": "Person",
+                "name": "lyhokia"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Newbie@Corner">Newbie@Corner</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Newbie@Corner">Newbie@Corner</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title"></h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">SICP Solutions in Clojure Chapter 3</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>lyhokia</a></span>&nbsp;<span class="post-category"></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-12">2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span></span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#exercise-31">Exercise 3.1</a></li>
+        <li><a href="#exercise-32">Exercise 3.2</a></li>
+        <li><a href="#exercise-33">Exercise 3.3</a></li>
+        <li><a href="#exercise-34">Exercise 3.4</a></li>
+        <li><a href="#exercise-35">Exercise 3.5</a></li>
+        <li><a href="#exercise-36">Exercise 3.6</a></li>
+        <li><a href="#exercise-37">Exercise 3.7</a></li>
+        <li><a href="#exercise-38">Exercise 3.8</a></li>
+        <li><a href="#exercise-39">Exercise 3.9</a></li>
+        <li><a href="#exercise-310">Exercise 3.10</a></li>
+        <li><a href="#exercise-311">Exercise 3.11</a></li>
+        <li><a href="#exercise-312">Exercise 3.12</a></li>
+        <li><a href="#exercise-313">Exercise 3.13</a></li>
+        <li><a href="#exercise-314">Exercise 3.14</a></li>
+        <li><a href="#exercise-315">Exercise 3.15</a></li>
+        <li><a href="#exercise-316">Exercise 3.16</a></li>
+        <li><a href="#exercise-317">Exercise 3.17</a></li>
+        <li><a href="#exercise-318">Exercise 3.18</a></li>
+        <li><a href="#exercise-319">Exercise 3.19</a></li>
+        <li><a href="#exercise-320">Exercise 3.20</a></li>
+        <li><a href="#exercise-321">Exercise 3.21</a></li>
+        <li><a href="#exercise-322">Exercise 3.22</a></li>
+        <li><a href="#exercise-323">Exercise 3.23</a></li>
+        <li><a href="#exercise-324">Exercise 3.24</a></li>
+        <li><a href="#exercise-325">Exercise 3.25</a></li>
+        <li><a href="#exercise-326">Exercise 3.26</a></li>
+        <li><a href="#exercise-327">Exercise 3.27</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="exercise-31">Exercise 3.1</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-accumulator</span> <span class="p">[</span><span class="nv">initial</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">sum</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">initial</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">swap!</span> <span class="nv">sum</span> <span class="p">(</span><span class="nb">partial + </span><span class="nv">x</span><span class="p">)))))</span>
+</code></pre></div><h3 id="exercise-32">Exercise 3.2</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-monitored</span> <span class="p">[</span><span class="nv">f</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">counter</span> <span class="p">(</span><span class="nf">atom</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">condp</span> <span class="nb">= </span><span class="nv">x</span>
+        <span class="ss">&#39;how-many-calls?</span>
+          <span class="o">@</span><span class="nv">counter</span>
+        <span class="ss">&#39;reset-count</span>
+          <span class="p">(</span><span class="nf">swap!</span> <span class="nv">counter</span> <span class="p">(</span><span class="nb">constantly </span><span class="mi">0</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">do</span>
+          <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">swap!</span> <span class="nv">counter</span> <span class="nv">inc</span><span class="p">))))))</span>
+</code></pre></div><h3 id="exercise-33">Exercise 3.3</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-account</span> <span class="p">[</span><span class="nv">initial-balance</span> <span class="nv">password</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">balance</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">initial-balance</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">pass</span> <span class="nv">operate</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">(</span><span class="nb">not= </span><span class="nv">pass</span> <span class="nv">password</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">constantly </span><span class="s">&#34;Incorrect password&#34;</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;withdraw</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+            <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt;= </span><span class="o">@</span><span class="nv">balance</span> <span class="nv">x</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="o">#</span><span class="p">(</span><span class="nb">- </span><span class="nv">%</span> <span class="nv">x</span><span class="p">))</span>
+              <span class="s">&#34;Insufficient funds&#34;</span><span class="p">))</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;deposit</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+            <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="p">(</span><span class="nb">partial + </span><span class="nv">x</span><span class="p">)))</span>
+        <span class="ss">:else</span>
+          <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;Unknown request: MAKE-ACCOUNT&#34;</span><span class="p">))))))</span>
+</code></pre></div><h3 id="exercise-34">Exercise 3.4</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-account</span> <span class="p">[</span><span class="nv">initial-balance</span> <span class="nv">password</span> <span class="nv">call-the-cops</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">balance</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">initial-balance</span><span class="p">)</span>
+        <span class="nv">consecutive-wrong-pass</span> <span class="p">(</span><span class="nf">atom</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">pass</span> <span class="nv">operate</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">(</span><span class="nb">not= </span><span class="nv">pass</span> <span class="nv">password</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">do</span>
+            <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">swap!</span> <span class="nv">consecutive-wrong-pass</span> <span class="nv">inc</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">call-the-cops</span><span class="p">))</span>
+            <span class="p">(</span><span class="nb">constantly </span><span class="s">&#34;Incorrect password&#34;</span><span class="p">))</span>
+        <span class="ss">:else</span>
+          <span class="p">(</span><span class="nf">do</span>
+            <span class="p">(</span><span class="nf">swap!</span> <span class="nv">consecutive-wrong-pass</span> <span class="p">(</span><span class="nb">constantly </span><span class="mi">0</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">cond</span>
+              <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;withdraw</span><span class="p">)</span>
+                <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+                  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt;= </span><span class="o">@</span><span class="nv">balance</span> <span class="nv">x</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="o">#</span><span class="p">(</span><span class="nb">- </span><span class="nv">%</span> <span class="nv">x</span><span class="p">))</span>
+                    <span class="s">&#34;Insufficient funds&#34;</span><span class="p">))</span>
+              <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;deposit</span><span class="p">)</span>
+                <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+                  <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="p">(</span><span class="nb">partial + </span><span class="nv">x</span><span class="p">)))</span>
+              <span class="ss">:else</span>
+                <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;Unknown request: MAKE-ACCOUNT&#34;</span><span class="p">))))))))</span>
+</code></pre></div><h3 id="exercise-35">Exercise 3.5</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">random-in-range</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span> <span class="c1">;;Include left, exclude right border.</span>
+  <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="p">(</span><span class="nb">rand-int </span><span class="p">(</span><span class="nb">- </span><span class="nv">b</span> <span class="nv">a</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">monte-carlo</span> <span class="p">[</span><span class="nv">trials</span> <span class="nv">experiment</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">-&gt;&gt;</span>
+    <span class="p">(</span><span class="nf">repeatedly</span> <span class="nv">experiment</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">take </span><span class="nv">trials</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="k">if </span><span class="nv">x</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">reduce </span><span class="nv">+</span><span class="p">)</span>
+    <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nb">/ </span><span class="nv">%</span> <span class="nv">trials</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">monte-carlo-integration</span> <span class="p">[</span><span class="nv">p</span> <span class="nv">x1</span> <span class="nv">x2</span> <span class="nv">y1</span> <span class="nv">y2</span> <span class="nv">trials</span><span class="p">]</span>
+ <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">monte-carlo</span> <span class="nv">trials</span> <span class="o">#</span><span class="p">(</span><span class="nf">p</span> <span class="p">(</span><span class="nf">random-in-range</span> <span class="nv">x1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">x2</span> <span class="mi">1</span><span class="p">))</span>
+                          <span class="p">(</span><span class="nf">random-in-range</span> <span class="nv">y1</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">y2</span> <span class="mi">1</span><span class="p">))))</span> <span class="p">(</span><span class="nb">- </span><span class="nv">y2</span> <span class="nv">y1</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">x2</span> <span class="nv">x1</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">double </span><span class="p">(</span><span class="nf">monte-carlo-integration</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span> <span class="nv">y</span><span class="p">]</span> <span class="p">(</span><span class="nb">&lt;= </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">y</span> <span class="nv">y</span><span class="p">))</span> <span class="mi">1000000</span><span class="p">))</span> <span class="mi">-1000</span> <span class="mi">1000</span> <span class="mi">-1000</span> <span class="mi">1000</span> <span class="mi">1000000</span><span class="p">))</span> <span class="mi">1000000</span><span class="p">)</span>
+</code></pre></div><h3 id="exercise-36">Exercise 3.6</h3>
+<p>It&rsquo;s simple yet hard to implement in Clojure, since I didn&rsquo;t find any information on how to initialize the seed of random, so I&rsquo;ll skip it.</p>
+<h3 id="exercise-37">Exercise 3.7</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-account</span> <span class="p">[</span><span class="nv">initial-balance</span> <span class="nv">password</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">balance</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">initial-balance</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">pass</span> <span class="nv">operate</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">(</span><span class="nb">not= </span><span class="nv">pass</span> <span class="nv">password</span><span class="p">)</span>
+          <span class="p">(</span><span class="nb">constantly </span><span class="s">&#34;Incorrect password&#34;</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;withdraw</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+            <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt;= </span><span class="o">@</span><span class="nv">balance</span> <span class="nv">x</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="o">#</span><span class="p">(</span><span class="nb">- </span><span class="nv">%</span> <span class="nv">x</span><span class="p">))</span>
+              <span class="s">&#34;Insufficient funds&#34;</span><span class="p">))</span>
+        <span class="p">(</span><span class="nb">= </span><span class="nv">operate</span> <span class="ss">&#39;deposit</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+            <span class="p">(</span><span class="nf">swap!</span> <span class="nv">balance</span> <span class="p">(</span><span class="nb">partial + </span><span class="nv">x</span><span class="p">)))</span>
+        <span class="ss">:else</span>
+          <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;Unknown request: MAKE-ACCOUNT&#34;</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">make-joint</span> <span class="p">[</span><span class="nv">account</span> <span class="nv">pass</span> <span class="nv">another-pass</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">((</span><span class="nf">account</span> <span class="nv">pass</span> <span class="ss">&#39;deposit</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span> <span class="s">&#34;Incorrect password&#34;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">constantly </span><span class="s">&#34;Incorrect password for the original account&#34;</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">input-pass</span> <span class="nv">operate</span><span class="p">]</span>
+      <span class="p">(</span><span class="nb">not= </span><span class="nv">input-pass</span> <span class="nv">another-pass</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">constantly </span><span class="s">&#34;Incorrect password&#34;</span><span class="p">)</span>
+      <span class="ss">:else</span>
+        <span class="p">(</span><span class="nf">account</span> <span class="nv">pass</span> <span class="nv">operate</span><span class="p">))))</span>
+</code></pre></div><h3 id="exercise-38">Exercise 3.8</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">f-generator</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">t</span> <span class="p">(</span><span class="nf">atom</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">swap!</span> <span class="nv">t</span> <span class="nv">inc</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="o">@</span><span class="nv">t</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">x</span> <span class="mi">0</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">def </span><span class="nv">f</span> <span class="p">(</span><span class="nf">f-generator</span><span class="p">))</span>
+</code></pre></div><h3 id="exercise-39">Exercise 3.9</h3>
+<p>Assume we call the factorial function from the global environment.</p>
+<p>For the recursive version:</p>
+<ol>
+<li>
+<p>Call (factorial 6), system creates a new frame E1 for the function, whose enclosing environment is the global environment.</p>
+</li>
+<li>
+<p>In (factorial 6), we evaluate (- n 1), where n is 6, got 5.</p>
+</li>
+<li>
+<p>Call (factorial 5), system creates a new frame E2 for the function, whose enclosing environment is E1.</p>
+</li>
+</ol>
+<p>&hellip;</p>
+<ol start="50">
+<li>
+<p>Call (factorial 1), system creates a new frame Ex for the function, enclosed by environment Ex-1.</p>
+</li>
+<li>
+<p>The function return 1.</p>
+</li>
+</ol>
+<p>&hellip;</p>
+<ol start="99">
+<li>
+<p>In (factorial 5), we evaluate (n * 24), where n is 5, return 120 to the caller function.</p>
+</li>
+<li>
+<p>In (factorial 6), we evaluate (n * 120), where n is 6, return 720 to the caller in the global environment.</p>
+</li>
+</ol>
+<p>For the iterative version:</p>
+<ol>
+<li>
+<p>Call (factorial 6) from the global environment, the system creates a new frame E1 for the function, enclosed by the global environment.</p>
+</li>
+<li>
+<p>Call (fac-iter 1 1 6) from E1, system creates a new frame E2.</p>
+</li>
+<li>
+<p>Call (fac-iter 1 2 6) from E2, system creates a new frame E3.</p>
+</li>
+</ol>
+<p>&hellip;</p>
+<ol start="50">
+<li>
+<p>Call (fac-iter 720 7 6) from Ex, returns 720.</p>
+</li>
+<li>
+<p>Returns 720 from the Ex-1 frame.</p>
+</li>
+</ol>
+<p>&hellip;</p>
+<ol start="100">
+<li>Return 720 from E1.</li>
+</ol>
+<h3 id="exercise-310">Exercise 3.10</h3>
+<p>Difference, the let binding way have created a new frame of environment, and store the variables in the inner-most environment.</p>
+<h3 id="exercise-311">Exercise 3.11</h3>
+<p>For each call on the make-account, the system creates a frame for the initial amount of money. So when different call on the make-account generate different frame for storing the state of that account.</p>
+<h3 id="exercise-312">Exercise 3.12</h3>
+<p>Response 1: (b nil)</p>
+<p>Response 2: (b (c (d nil)))</p>
+<h3 id="exercise-313">Exercise 3.13</h3>
+<p>A loop. &lsquo;a -&gt; &lsquo;b -&gt; &lsquo;c -&gt; &lsquo;a &hellip;</p>
+<p>Attempt to get the last element results in infinite loop.</p>
+<h3 id="exercise-314">Exercise 3.14</h3>
+<p>This reverses a given list.</p>
+<p>v: (list &rsquo;d &lsquo;c &lsquo;b &lsquo;a)
+w: &rsquo;d</p>
+<h3 id="exercise-315">Exercise 3.15</h3>
+<p>Skipped, it&rsquo;s easy.</p>
+<h3 id="exercise-316">Exercise 3.16</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="o">&#39;</span><span class="p">(</span><span class="nf">a</span> <span class="p">(</span><span class="nf">b</span> <span class="nv">c</span><span class="p">))</span> <span class="c1">;; 3</span>
+
+<span class="p">(</span><span class="k">def </span><span class="nv">z</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">list </span><span class="nv">z</span> <span class="p">(</span><span class="nb">list </span><span class="nv">c</span> <span class="nv">z</span><span class="p">))</span> <span class="c1">;; 4</span>
+
+<span class="p">(</span><span class="k">def </span><span class="nv">a</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">b</span> <span class="p">(</span><span class="nb">list </span><span class="nv">a</span> <span class="nv">a</span><span class="p">))</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">c</span> <span class="p">(</span><span class="nb">list </span><span class="nv">b</span> <span class="nv">b</span><span class="p">))</span> <span class="c1">;; 7</span>
+
+<span class="p">(</span><span class="k">def </span><span class="nv">z</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">a</span> <span class="nv">a</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">set-car!</span> <span class="nv">z</span> <span class="nv">z</span><span class="p">)</span> <span class="c1">;; Infinite loop, I use set-car! just to demonstrate, actually clojure has no set-car!</span>
+</code></pre></div><h3 id="exercise-317">Exercise 3.17</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">count-lists</span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">record</span> <span class="nv">input</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">input</span><span class="p">)</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">some </span><span class="p">(</span><span class="nb">partial identical? </span><span class="nv">input</span><span class="p">)</span> <span class="nv">record</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">reduce </span><span class="nv">iter</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">record</span> <span class="nv">input</span><span class="p">)</span> <span class="nv">input</span><span class="p">)</span>
+      <span class="nv">record</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">count </span><span class="p">(</span><span class="nf">iter</span> <span class="o">&#39;</span><span class="p">()</span> <span class="nv">x</span><span class="p">)))</span>
+</code></pre></div><h3 id="exercise-318">Exercise 3.18</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">cycle?</span><span class="p">[</span><span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">flag</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">false</span><span class="p">)</span>
+        <span class="nv">chain</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">())</span> <span class="p">]</span>
+    <span class="p">(</span><span class="kd">defn </span><span class="nv">iter</span> <span class="p">[</span><span class="nv">record</span> <span class="nv">input</span><span class="p">]</span>
+      <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">input</span><span class="p">))</span>
+              <span class="nv">record</span>
+            <span class="p">(</span><span class="nb">some </span><span class="p">(</span><span class="nb">partial identical? </span><span class="nv">input</span><span class="p">)</span> <span class="o">@</span><span class="nv">chain</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="nf">swap!</span> <span class="nv">flag</span> <span class="p">(</span><span class="nb">constantly </span><span class="nv">true</span><span class="p">))</span>
+                  <span class="nv">record</span><span class="p">)</span>
+            <span class="p">(</span><span class="nb">some </span><span class="p">(</span><span class="nb">partial identical? </span><span class="nv">input</span><span class="p">)</span> <span class="nv">record</span><span class="p">)</span>
+              <span class="nv">record</span>
+            <span class="ss">:else</span>
+              <span class="p">(</span><span class="nf">do</span>
+                <span class="p">(</span><span class="nf">swap!</span> <span class="nv">chain</span> <span class="o">#</span><span class="p">(</span><span class="nb">conj </span><span class="nv">%</span> <span class="nv">input</span><span class="p">))</span>
+                <span class="p">(</span><span class="nb">reduce </span><span class="nv">iter</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">record</span> <span class="nv">input</span><span class="p">)</span> <span class="nv">input</span><span class="p">)</span>
+                <span class="p">(</span><span class="nf">swap!</span> <span class="nv">chain</span> <span class="o">#</span><span class="p">(</span><span class="nb">drop </span><span class="mi">1</span> <span class="nv">%</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nf">iter</span> <span class="o">&#39;</span><span class="p">()</span> <span class="nv">x</span><span class="p">)</span>
+    <span class="o">@</span><span class="nv">flag</span><span class="p">))</span>
+</code></pre></div><p>This should work as expected, but I don&rsquo;t find a way to construct a self pointing list/pair.</p>
+<h3 id="exercise-319">Exercise 3.19</h3>
+<p>Use the Floyd&rsquo;s &ldquo;slow fast pointer&rdquo; algorithm:</p>
+<ol>
+<li>Make 2 pointers A and B pointing to the head of the list.</li>
+<li>For each step, Move A one step forward and B two steps forward.</li>
+<li>If we reach the tail, without A and B meeting, then there&rsquo;s no loop.</li>
+<li>o.w. There is a loop. The algorithm is guaranteed to terminate.</li>
+</ol>
+<p>Correctness:
+Obviously, if there&rsquo;s no loop. the algorithm while terminate without two Pointers meeting. What we should consider is the situation that there is a loop.</p>
+<p>If there&rsquo;s a loop, we must have a situation that both of the pointers trapped in the loop.</p>
+<p>Let&rsquo;s say the size of the loop is N, and the distance between A and B is t when they first entered the loop. Note that the distance t (Assume A is in the front, B is in the back. )</p>
+<p>So each move, A moves forward 1 step while B moves forward 2 step, there distance reduce by 1. After t moves, they meet each other.</p>
+<p>This algorithm is different from the one implemented in 3.18, since 3.18 is actually judging cycles over a map rather than a linked list.</p>
+<h3 id="exercise-320">Exercise 3.20</h3>
+<p>Skipped XP</p>
+<h3 id="exercise-321">Exercise 3.21</h3>
+<p>The pair of the queue object actually stores a head and rear pointer, So whenever it prints, it prints a pair of the original queue and the last element.</p>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">print-queue</span> <span class="p">(</span><span class="nb">comp prn </span><span class="nv">first</span><span class="p">))</span>
+</code></pre></div><h3 id="exercise-322">Exercise 3.22</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-queue</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">front-ptr</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">())</span>
+        <span class="nv">rear-ptr</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">())]</span>
+     <span class="p">{</span> <span class="ss">:front-ptr</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="o">@</span><span class="nv">front-ptr</span><span class="p">)</span>
+       <span class="ss">:rear-ptr</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="o">@</span><span class="nv">rear-ptr</span><span class="p">)</span>
+       <span class="ss">:set-front-ptr!</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">front-ptr</span> <span class="p">(</span><span class="nb">constantly </span><span class="nv">x</span><span class="p">)))</span>
+       <span class="ss">:set-rear-ptr!</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">x</span><span class="p">]</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">rear-ptr</span> <span class="p">(</span><span class="nb">constantly </span><span class="nv">x</span><span class="p">)))}))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-ptr</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span> <span class="p">((</span><span class="ss">:front-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">rear-ptr</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span> <span class="p">((</span><span class="ss">:rear-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">set-front-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span> <span class="p">((</span><span class="ss">:set-front-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">set-rear-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span> <span class="p">((</span><span class="ss">:set-rear-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+</code></pre></div><h3 id="exercise-323">Exercise 3.23</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-deque</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="kd">defn </span><span class="nb">make-node </span><span class="p">[</span><span class="nv">val</span><span class="p">]</span> <span class="p">{</span><span class="ss">:val</span> <span class="nb">val </span><span class="ss">:last</span> <span class="nv">nil</span> <span class="ss">:next</span> <span class="nv">nil</span><span class="p">})</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">front-ptr</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">nil</span><span class="p">)</span>
+        <span class="nv">rear-ptr</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">nil</span><span class="p">)]</span>
+    <span class="p">{</span> <span class="ss">:front-ptr</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="o">@</span><span class="nv">front-ptr</span><span class="p">)</span>
+      <span class="ss">:rear-ptr</span> <span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="o">@</span><span class="nv">rear-ptr</span><span class="p">)</span>
+      <span class="ss">:swap-front-ptr!</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">front-ptr</span> <span class="nv">f</span><span class="p">))</span>
+      <span class="ss">:swap-rear-ptr!</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">rear-ptr</span> <span class="nv">f</span><span class="p">))}))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-ptr</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span> <span class="p">((</span><span class="ss">:front-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">rear-ptr</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span> <span class="p">((</span><span class="ss">:rear-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">set-front-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span> <span class="p">((</span><span class="ss">:swap-front-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="p">(</span><span class="nb">constantly </span><span class="nv">x</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">set-rear-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span> <span class="p">((</span><span class="ss">:swap-rear-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="p">(</span><span class="nb">constantly </span><span class="nv">x</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">swap-front-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">f</span><span class="p">]</span> <span class="p">((</span><span class="ss">:swap-front-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">swap-rear-ptr!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">f</span><span class="p">]</span> <span class="p">((</span><span class="ss">:swap-rear-ptr!</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">empty-deque?</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span> <span class="p">(</span><span class="nb">nil? </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-deque</span><span class="p">[</span><span class="nv">q</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;FRONT called with an empty queue&#34;</span><span class="p">))</span>
+    <span class="p">(</span><span class="ss">:val</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">))))</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-deque</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;FRONT called with an empty queue&#34;</span><span class="p">))</span>
+    <span class="p">(</span><span class="ss">:val</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-insert-deque!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">new-front</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nb">make-node </span><span class="nv">val</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nb">assoc </span><span class="ss">:next</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">)))]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">q</span> <span class="nv">new-front</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">swap-front-ptr!</span> <span class="nv">q</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%</span> <span class="ss">:last</span> <span class="nv">new-front</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">q</span> <span class="nv">new-front</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">rear-insert-deque!</span> <span class="p">[</span><span class="nv">q</span> <span class="nv">x</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">new-rear</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nb">make-node </span><span class="nv">val</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nb">assoc </span><span class="ss">:last</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">q</span><span class="p">)))]</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">q</span> <span class="nv">new-rear</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">swap-rear-ptr!</span> <span class="nv">q</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%</span> <span class="ss">:next</span> <span class="nv">new-rear</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">q</span> <span class="nv">new-rear</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">front-delete-deque!</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;DELETE called with an empty queue&#34;</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">)</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">q</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">q</span> <span class="nv">nil</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">q</span> <span class="nv">nil</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">do</span>
+        <span class="p">(</span><span class="nf">swap-rear-ptr!</span> <span class="nv">q</span> <span class="ss">:last</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">swap-rear-ptr!</span> <span class="nv">q</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%</span> <span class="ss">:next</span> <span class="nv">nil</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">rear-delete-deque!</span> <span class="p">[</span><span class="nv">q</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="s">&#34;DELETE called with an empty queue&#34;</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">)</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">q</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">q</span> <span class="nv">nil</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">q</span> <span class="nv">nil</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">do</span>
+        <span class="p">(</span><span class="nf">swap-front-ptr!</span> <span class="nv">q</span> <span class="ss">:next</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">swap-front-ptr!</span> <span class="nv">q</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%</span> <span class="ss">:last</span> <span class="nv">nil</span><span class="p">))))))</span>
+</code></pre></div><h3 id="exercise-324">Exercise 3.24</h3>
+<div class="highlight"><pre class="chroma"><code class="language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">make-table</span> <span class="p">[</span><span class="nv">same-key?</span><span class="p">]</span> <span class="c1">;; This is implemented as a n-dimension array</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">local-table</span> <span class="p">(</span><span class="nf">atom</span> <span class="nv">nil</span><span class="p">)]</span>
+    <span class="p">(</span><span class="kd">defn </span><span class="nv">lookup</span> <span class="p">[</span><span class="nb">keys </span><span class="nv">table</span><span class="p">]</span>
+      <span class="p">(</span><span class="nb">cond </span><span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">nil? </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">table</span><span class="p">))</span>
+              <span class="nv">false</span>
+            <span class="p">(</span><span class="nf">same-key?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">)))</span>
+              <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty?</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">))</span>
+                <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))</span>
+                <span class="p">(</span><span class="nf">recur</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))))</span>
+            <span class="ss">:else</span>
+              <span class="p">(</span><span class="nf">recur</span> <span class="nb">key </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">))))</span>
+    <span class="p">(</span><span class="kd">defn </span><span class="nv">insert</span> <span class="p">[</span><span class="nb">keys </span><span class="nv">table</span> <span class="nv">value</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="p">(</span><span class="nf">empty?</span> <span class="nv">keys</span><span class="p">)</span>
+          <span class="nv">value</span>
+        <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">nil? </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nf">empty?</span> <span class="nv">table</span><span class="p">))</span>
+          <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="nv">nil</span> <span class="nv">value</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">same-key?</span> <span class="p">(</span><span class="nb">first </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">first </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))(</span><span class="nf">insert</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">keys</span><span class="p">)</span> <span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))</span> <span class="nv">value</span><span class="p">)))</span>
+        <span class="ss">:else</span>
+          <span class="p">(</span><span class="nb">conj </span><span class="p">(</span><span class="nf">insert</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">rest </span><span class="nv">table</span><span class="p">)</span> <span class="nv">value</span><span class="p">)</span> <span class="p">(</span><span class="nb">first </span><span class="nv">table</span><span class="p">))))</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">m</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">condp</span> <span class="nb">= </span><span class="nv">m</span>
+       <span class="ss">&#39;lookup-proc</span>
+         <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">keys</span><span class="p">]</span>
+           <span class="p">(</span><span class="nf">lookup</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">keys</span><span class="p">)</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">list </span><span class="nv">keys</span><span class="p">))</span> <span class="o">@</span><span class="nv">local-table</span><span class="p">))</span>
+       <span class="ss">&#39;insert-proc!</span>
+         <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nb">keys </span><span class="nv">value</span><span class="p">]</span>
+           <span class="p">(</span><span class="nf">swap!</span> <span class="nv">local-table</span> <span class="p">(</span><span class="nf">constantly</span>
+             <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">list?</span> <span class="nv">keys</span><span class="p">)</span> <span class="nb">keys </span><span class="p">(</span><span class="nb">list </span><span class="nv">keys</span><span class="p">))</span> <span class="o">@</span><span class="nv">local-table</span> <span class="nv">value</span><span class="p">))))</span>
+       <span class="ss">:else</span>
+         <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">Exception.</span> <span class="p">(</span><span class="nb">str </span><span class="s">&#34;MAKE-TABLE: procedure not found for &#34;</span> <span class="nv">m</span><span class="p">)))))))</span>
+</code></pre></div><h3 id="exercise-325">Exercise 3.25</h3>
+<p>Implemented in 3.24</p>
+<h3 id="exercise-326">Exercise 3.26</h3>
+<p>A binary tree resides in another.</p>
+<h3 id="exercise-327">Exercise 3.27</h3>
+<p>Environment diagram omitted.</p>
+<p>The algorithm now turns to O(n+m), where n is the scale of input to the function and m is the time you query.</p>
+<p>This is because for every x, f(x) will only be calculated once.</p>
+<p>Scheme/Clojure won&rsquo;t work the same, if the recursion part won&rsquo;t call the memoized function.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/algorithms/">algorithms</a>,&nbsp;<a href="/tags/principles/">principles</a>,&nbsp;<a href="/tags/lisp/">LISP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();"></a></span>&nbsp;|&nbsp;<span><a href="/"></a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/sicp-solutions-in-clojure-chapter-1/" class="prev" rel="prev" title="SICP Solutions in Clojure (Chapter 1)"><i class="fas fa-angle-left fa-fw"></i>SICP Solutions in Clojure (Chapter 1)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">lyhokia</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
